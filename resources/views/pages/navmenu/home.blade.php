@@ -12,7 +12,6 @@
       </span>
     </a>
     <ul class="treeview-menu">
-    <li><a href="/datsiswa"><i class="fa fa-circle-o"></i> Data Siswa</a></li>
       <li><a href="/siswa"><i class="fa fa-circle-o"></i> Siswa </a></li>
       <li><a href="/kelas"><i class="fa fa-circle-o"></i> Kelas </a></li>
       <li><a href="/absen"><i class="fa fa-circle-o"></i> Absensi </a></li>
