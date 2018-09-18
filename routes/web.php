@@ -16,21 +16,9 @@ Route::resource('middle', 'ctrControler')->middleware('defend');
 
 Route::resource('control', 'ctrControler');
 
-Route::resource('Skl', 'SklController');
-
-Route::get('/siswa', function () {
-    return view('pages/content/skl/siswa');
-});
-Route::get('/kelas', function () {
-    return view('pages/content/skl/kelas');
-});
-Route::get('/absen', function () {
-    return view('pages/content/skl/absen');
-});
-Route::get('/mapel', function () {
-    return view('pages/content/skl/mapel');
-});
-Route::get('/piket', function () {
-    return view('pages/content/skl/piket');
-});
+Route::resource('siswa', 'SiswaController');
+Route::resource('kelas', 'KelasController');
+Route::resource('absen', 'AbsenController');
+Route::resource('mapel', 'MapelController');
+Route::resource('piket', 'PiketController');
 
