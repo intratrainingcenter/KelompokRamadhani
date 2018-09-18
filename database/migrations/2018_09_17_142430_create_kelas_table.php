@@ -17,6 +17,7 @@ class CreateKelasTable extends Migration
             $table->increments('id_kelas');
             $table->timestamps();
             $table->increments('user');
+            $table->string('nama_kelas');
             $table->string('jml_siswa',40);
 
 

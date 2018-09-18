@@ -18,6 +18,8 @@ class CreateJadpiketsTable extends Migration
             $table->timestamps();
             $table->increments('id_siswa');
             $table->string('nama_siswa',40);
+            $table->string('hari');
+
 
            
         });
