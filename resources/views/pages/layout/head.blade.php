@@ -168,18 +168,26 @@
         @yield('h1')
         <small>@yield('h2')</small>
       </h1>
-      
+       
     </section>
-
-  <div class="content-wrapper">
+  
+ 
+  
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    @yield('content')
+      <div class="row">
+        <div class="col-xs-12">
+          
+      @yield('content')
     
-    
+            
+          </div>
+        </div>
+      
     </section>
   
 </div>
+
 
 
   <footer class="main-footer">
