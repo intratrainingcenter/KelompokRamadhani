@@ -18,9 +18,6 @@ Route::resource('control', 'ctrControler');
 
 Route::resource('Skl', 'SklController');
 
-Route::get('/datsiswa', function () {
-    return view('pages/content/skl/datsis');
-});
 Route::get('/siswa', function () {
     return view('pages/content/skl/siswa');
 });
