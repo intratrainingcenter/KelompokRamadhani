@@ -12,11 +12,11 @@
       </span>
     </a>
     <ul class="treeview-menu">
-      <li><a href="/siswa"><i class="fa fa-circle-o"></i> Siswa </a></li>
-      <li><a href="/kelas"><i class="fa fa-circle-o"></i> Kelas </a></li>
-      <li><a href="/absen"><i class="fa fa-circle-o"></i> Absensi </a></li>
-      <li><a href="/piket"><i class="fa fa-circle-o"></i> Piket </a></li>
-      <li><a href="/mapel"><i class="fa fa-circle-o"></i> Mapel </a></li>
+      <li><a href="{{route('siswa.index')}}"><i class="fa fa-circle-o"></i> Siswa </a></li>
+      <li><a href="{{route('kelas.index')}}"><i class="fa fa-circle-o"></i> Kelas </a></li>
+      <li><a href="{{route('absen.index')}}"><i class="fa fa-circle-o"></i> Absensi </a></li>
+      <li><a href="{{route('piket.index')}}"><i class="fa fa-circle-o"></i> Piket </a></li>
+      <li><a href="{{route('mapel.index')}}"><i class="fa fa-circle-o"></i> Mapel </a></li>
     </ul>
   </li> 
 @endsection
