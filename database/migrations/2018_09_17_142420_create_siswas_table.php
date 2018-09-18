@@ -16,11 +16,12 @@ class CreateSiswasTable extends Migration
         Schema::create('siswas', function (Blueprint $table) {
             $table->increments('id_siswa');
             $table->timestamps();
-            $table->increments('id_dat_siswa');
-            $table->integer('bhs_indo',40);
-            $table->integer('bhs_eng',40);
-            $table->integer('mtk',40);
-            $table->string('ket',40);
+            $table->string('nama_siswa');
+            $table->string('alamat');
+            $table->date('tgl_lahir');
+
+
+            
 
 
 
