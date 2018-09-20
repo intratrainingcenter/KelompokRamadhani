@@ -6,14 +6,15 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Responsive Hover Table</h3>
+          <h3 class="box-title"></h3>
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+                    <button class="btn-lg btn-success fa fa-plus-square"></button>                  
+              
 
               <div class="input-group-btn">
-                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+               
               </div>
             </div>
           </div>
@@ -36,8 +37,10 @@
               <td>Murasaki</td>
               <td>Isekai</td>
               <td>11-7-2014</td>
-              <td><span class="label label-success">Approved</span></td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+              <td>
+                  <button class="btn-lg btn-warning fa fa-edit"></button>
+                  <button class="btn-lg btn-danger fa fa-bitbucket"></button>                  
+              </td>
             </tr>
         </tbody>
           </table>
