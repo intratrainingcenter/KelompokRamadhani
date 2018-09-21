@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Inupoi
+                    Zombie
                 </div>
 
                 <div class="links">
