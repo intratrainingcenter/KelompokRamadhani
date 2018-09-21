@@ -10,7 +10,7 @@
 
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-                    <button type="button" class="btn-lg btn-success fa fa-plus-square" data-toggle="modal" data-target="#modal-success"> </button>               
+                    <button type="button" class="btn-lg btn-success fa fa-plus-square" title="Tambah Mapel" data-toggle="modal" data-target="#modal-success"> </button>               
               <div class="input-group-btn">
               </div>
             </div>
@@ -38,8 +38,8 @@
               <td>{{$item->mapel}}</td>
               <td>{{$item->nkm}}</td>
               <td>
-                  <button class="btn-lg btn-warning fa fa-edit"></button>
-                  <button class="btn-lg btn-danger fa fa-bitbucket"></button>                  
+                  <button class="btn-lg btn-warning fa fa-edit"></button> 
+              <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_mapel}}"> </button>               
               </td>
             </tr>
             @endforeach
@@ -61,36 +61,37 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-          <span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Tambah Mapel</h4>
       </div>
+      {{-- <form  action="addmapel" method="post"> --}}
+          {!! Form::open(['route' => 'add' , 'method' => 'post'])!!}
       <div class="modal-body">
           <div class="box-body">
               <div class="form-group">
                   <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="kodeguru" placeholder="kode Guru">
+                    <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru">
                   </div>
                 </div>
                 <br><br>
               <div class="form-group">
                 <label for="kodemapel" class="col-sm-4 control-label">Kode Mapel</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="kodemapel" placeholder="kode Mapel">
+                  <input type="text" class="form-control" name="kode_mapel" id="kodemapel" placeholder="kode Mapel">
                 </div>
               </div>
               <br><br>
               <div class="form-group">
                   <label for="mapel" class="col-sm-4 control-label">Mata Pelajaran</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="mapel" placeholder="Mapel">
+                    <input type="text" class="form-control" name='mapel' id="mapel" placeholder="Mapel">
                   </div>
                 </div>
                 <br><br>
                 <div class="form-group">
                     <label for="nkm" class="col-sm-4 control-label">NKM</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" id="nkm" placeholder="NKM minim utk lulus">
+                      <input type="text" class="form-control" name="nkm" id="nkm"  placeholder="NKM minim utk lulus">
                     </div>
                   </div>
                   <br> 
@@ -98,9 +99,13 @@
            </div>  
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-outline">Add</button>
+        <button type="button" class="btn btn-danger pull-left batal" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+      {{-- {{ csrf_field() }}
+    </form> --}}
+    {!! Form::close() !!}
+
     </div>
     <!-- /.modal-content -->
   </div>
@@ -108,6 +113,33 @@
 </div>
 <!-- /.modal -->
 
+<!-- /.modal-HAPUS -->
+@foreach ($mapel as $item)
+<div class="modal fade" id="modal-default{{$item->id_mapel}}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Hapus Mapel</h4>
+              </div>
+              {!! Form::open(['route' => 'delete',$item->id_mapel, 'method' => 'delete' ]) !!}
+              <div class="modal-body">
+              <input type="hidden" name="id" value="{{$item->id_mapel}}">
+              <p>Apakah anda yakin ingin menghapus mapel :{{$item->mapel}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              {!! Form::close() !!}
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+  @endforeach
 
 
 @endsection
