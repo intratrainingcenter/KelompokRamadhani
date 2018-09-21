@@ -1,11 +1,8 @@
 <?php
 Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/tes', function () {
+Route::get('/', function () {
     return view('pages/content/home') ;
 });
 
@@ -21,4 +18,6 @@ Route::resource('kelas', 'KelasController');
 Route::resource('absen', 'AbsenController');
 Route::resource('mapel', 'MapelController');
 Route::resource('piket', 'PiketController');
+Route::resource('guru', 'GuruController');
+
 
