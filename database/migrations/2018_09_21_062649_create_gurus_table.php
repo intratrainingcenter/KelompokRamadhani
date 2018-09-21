@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSiswasTable extends Migration
+class CreateGurusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,12 @@ class CreateSiswasTable extends Migration
      */
     public function up()
     {
-        Schema::create('siswas', function (Blueprint $table) {
-            $table->increments('id_siswa');
+        Schema::create('gurus', function (Blueprint $table) {
+            $table->increments('id_guru');
             $table->timestamps();
-            $table->string('NIS');
-            $table->string('nama_siswa');
-            $table->string('alamat');
-            $table->date('tgl_lahir');
+            $table->string('kode_guru',20);
+            $table->string('nama_guru',20);
 
-
-            
-
-
-
-
-            
         });
     }
 
@@ -38,6 +29,6 @@ class CreateSiswasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('siswas');
+        Schema::dropIfExists('gurus');
     }
 }
