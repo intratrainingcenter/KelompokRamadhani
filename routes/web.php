@@ -20,4 +20,9 @@ Route::resource('mapel', 'MapelController');
 Route::resource('piket', 'PiketController');
 Route::resource('guru', 'GuruController');
 
+Route::prefix('sekolah')->group(function (){
+    route::post('add', 'MapelController@add')->name('add');
+    route::delete('delete', 'MapelController@delete')->name('delete');
+
+});
 
