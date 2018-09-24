@@ -11,6 +11,6 @@ class kelas extends Model
 
     public function detailguru()
     {
-    	return $this->hasMany('App\guru','kode_guru','kode_guru');
+    	return $this->hasOne('App\guru','kode_guru','kode_guru');
     }
 }

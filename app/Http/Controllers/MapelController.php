@@ -9,7 +9,7 @@ class MapelController extends Controller
 {
     public function index()
     {
-        $mapel = mapel::all(DESC);
+        $mapel = mapel::all();
         
         return view ('pages/content/skl/mapel',['mapel'=>$mapel]);
     }
