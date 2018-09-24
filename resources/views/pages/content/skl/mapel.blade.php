@@ -38,8 +38,8 @@
               <td>{{$item->mapel}}</td>
               <td>{{$item->nkm}}</td>
               <td>
-                  <button class="btn-lg btn-warning fa fa-edit"></button> 
-              <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_mapel}}"> </button>               
+                  <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_mapel}}"></button>
+                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_mapel}}"> </button>               
               </td>
             </tr>
             @endforeach
@@ -70,7 +70,7 @@
               <div class="form-group">
                   <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru">
+                    <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru" value="">
                   </div>
                 </div>
                 <br><br>
@@ -139,7 +139,67 @@
           <!-- /.modal-dialog -->
         </div>
         <!-- /.modal -->
-  @endforeach
+
+<!-- /.modal-EDIT -->
+
+        <div class="modal fade" id="modal-edit{{$item->id_mapel}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Hapus Mapel</h4>
+                </div>
+                {!! Form::open(['route' => 'edit',$item->id_mapel, 'method' => 'PUT' ]) !!}
+                <div class="modal-body">
+                <input type="hidden" name="id" value="{{$item->id_mapel}}">
+                
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
+                        <div class="col-sm-8">
+                        <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru" value="{{$item->kode_guru}}">
+                        </div>
+                      </div>
+                      <br><br>
+                    <div class="form-group">
+                      <label for="kodemapel" class="col-sm-4 control-label">Kode Mapel</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="kode_mapel" id="kodemapel" placeholder="kode Mapel" value="{{$item->kode_mapel}}">
+                      </div>
+                    </div>
+                    <br><br>
+                    <div class="form-group">
+                        <label for="mapel" class="col-sm-4 control-label">Mata Pelajaran</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" name='mapel' id="mapel" placeholder="Mapel" value="{{$item->mapel}}">
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                          <label for="nkm" class="col-sm-4 control-label">NKM</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" name="nkm" id="nkm"  placeholder="NKM minim utk lulus" value="{{$item->nkm}}">
+                          </div>
+                        </div>
+                        <br> 
+      
+                 </div>  
 
 
-@endsection
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                {!! Form::close() !!}
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+
+    @endforeach
+
+  @endsection
