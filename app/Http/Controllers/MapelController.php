@@ -45,8 +45,18 @@ class MapelController extends Controller
 
     }
 
-    public function edit(Reuqest $request)
+    public function edit(Request $request)
     {
+        // dd($request);
+        $update = mapel::find($request->id);
+        $update->kode_guru = $request->kode_guru;
+        $update->kode_mapel = $request->kode_mapel;
+        $update->mapel = $request->mapel;
+        $update->nkm = $request->nkm;
+        $update->save();
+
+      return redirect('mapel');
+
 
     }
 }

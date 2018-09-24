@@ -70,7 +70,7 @@
               <div class="form-group">
                   <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru">
+                    <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru" value="">
                   </div>
                 </div>
                 <br><br>
@@ -140,6 +140,8 @@
         </div>
         <!-- /.modal -->
 
+<!-- /.modal-EDIT -->
+
         <div class="modal fade" id="modal-edit{{$item->id_mapel}}">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -148,7 +150,7 @@
                     <span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title">Hapus Mapel</h4>
                 </div>
-                {!! Form::open(['route' => 'delete',$item->id_mapel, 'method' => 'delete' ]) !!}
+                {!! Form::open(['route' => 'edit',$item->id_mapel, 'method' => 'PUT' ]) !!}
                 <div class="modal-body">
                 <input type="hidden" name="id" value="{{$item->id_mapel}}">
                 
