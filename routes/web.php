@@ -23,6 +23,7 @@ Route::resource('guru', 'GuruController');
 Route::prefix('sekolah')->group(function (){
     route::post('add', 'MapelController@add')->name('add');
     route::delete('delete', 'MapelController@delete')->name('delete');
+    route::put('edit', 'MapelController@edit')->name('edit');
 
 });
 

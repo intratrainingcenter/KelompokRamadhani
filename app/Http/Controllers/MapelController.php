@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\mapel;
 
 class MapelController extends Controller
 {
     public function index()
     {
-        $mapel = mapel::all();
-        
+        // $mapel = mapel::all();
+        $mapel = DB::table('mapels')->select('*')->orderBy('id_mapel','DESC')->get();
+        // dd($mapel);
         return view ('pages/content/skl/mapel',['mapel'=>$mapel]);
     }
 
@@ -43,8 +45,18 @@ class MapelController extends Controller
 
     }
 
-    public function edit(Reuqest $request)
+    public function edit(Request $request)
     {
+        // dd($request);
+        $update = mapel::find($request->id);
+        $update->kode_guru = $request->kode_guru;
+        $update->kode_mapel = $request->kode_mapel;
+        $update->mapel = $request->mapel;
+        $update->nkm = $request->nkm;
+        $update->save();
+
+      return redirect('mapel');
+
 
     }
 }
