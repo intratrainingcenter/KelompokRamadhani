@@ -47,5 +47,6 @@ Route::prefix('KLS')->group(function(){
 Route::prefix('PKT')->group(function(){
 	route::post('add', 'PiketController@add')->name('add');
 	route::delete('delete', 'PiketController@delete')->name('delete');
+    route::put('update', 'KelasController@edit')->name('update');
 });
 
