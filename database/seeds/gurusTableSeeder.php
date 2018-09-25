@@ -17,9 +17,9 @@ class gurusTableSeeder extends Seeder
         		'id_guru'     =>  '1',
                 'kode_guru'   =>  'BI12',
                 'nama_guru'   =>  'Drs.Debo',
-                'mapel'       =>  'B.Inggris',
-                'created_at'    =>  Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at'    =>  Carbon::now()->format('Y-m-d H:i:s')
+                'kode_mapel'  =>  'B.Inggris',
+                'created_at'  =>  Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at'  =>  Carbon::now()->format('Y-m-d H:i:s')
         	]
         ]);
     }

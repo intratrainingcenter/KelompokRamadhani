@@ -52,7 +52,7 @@
         <h4 class="modal-title">Tambah Data Kelas</h4>
       </div>
       {{-- <form  action="addmapel" method="post"> --}}
-          {!! Form::open(['route' => 'add' , 'method' => 'post'])!!}
+          {!! Form::open(['route' => 'addkelas' , 'method' => 'post'])!!}
       <div class="modal-body">
           <div class="box-body">
               <div class="form-group">
@@ -60,11 +60,10 @@
                   <div class="col-sm-8">
                     <select class="form-control" name="kode_guru">
                       <option value="" disabled selected>Wali Kelas</option>
-                      @foreach($data as $kelas)
-                      <option value="{{$kelas->detailguru->kode_guru}}">{{$kelas->detailguru->nama_guru}}</option>
+                      @foreach($guru as $walas)
+                      <option value="{{$walas->kode_guru}}">{{$walas->nama_guru}}</option>
                       @endforeach
                     </select>
-                    {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                   </div>
                 </div>
                 <br><br>
@@ -108,7 +107,7 @@
             <span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Hapus Data Kelas</h4>
         </div>
-        {!! Form::open(['route' => 'delete',$kelas->id, 'method' => 'delete' ]) !!}
+        {!! Form::open(['route' => 'deletekelas',$kelas->id, 'method' => 'delete' ]) !!}
         <div class="modal-body">
           <input type="hidden" name="id" value="{{$kelas->id}}">
           <p>Apakah anda yakin ingin menghapus data ini ?</p>
@@ -133,7 +132,7 @@
             <span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Update Kelas</h4>
         </div>
-        {!! Form::open(['route' => 'update',$kelas->id, 'method' => 'PUT' ]) !!}
+        {!! Form::open(['route' => 'updatekelas',$kelas->id, 'method' => 'PUT' ]) !!}
         <div class="modal-body">
         <input type="hidden" name="id" value="{{$kelas->id}}">
                 
@@ -142,8 +141,10 @@
                 <label for="kodeguru" class="col-sm-4 control-label">Wali Kelas</label>
                 <div class="col-sm-8">
                 <select class="form-control" name="kode_guru">
-                      <option value="" disabled>Wali Kelas</option>
-                      <option value="{{$kelas->detailguru->kode_guru}}" selected>{{$kelas->detailguru->nama_guru}}</option>
+                      <option value="{{$kelas->kode_guru}}" disabled selected>{{$kelas->detailguru->nama_guru}}</option>
+                      @foreach($guru as $walas)
+                      <option value="{{$walas->kode_guru}}">{{$walas->nama_guru}}</option>
+                      @endforeach
                     </select>
                 </div>
               </div>

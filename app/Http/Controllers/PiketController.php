@@ -10,7 +10,7 @@ class PiketController extends Controller
     public function index()
     {
     	$data = jadpiket::all();
-    	dd($data);
+    	// dd($data);
         return view ('pages/content/skl/piket', compact('data'));
     }
 
