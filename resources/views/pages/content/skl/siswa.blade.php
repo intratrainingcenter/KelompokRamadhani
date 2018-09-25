@@ -97,7 +97,7 @@
                       <select class="form-control" name="kode_piket">
                         <option value="" disabled selected>Kode Piket</option>
                   @foreach ($jadpiket as $itemP)                       
-                        <option value="{{$itemP->kode_piket}}">{{$itemP->hari}}</option>
+                        <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>
                   @endforeach    
                       </select>
                       {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
@@ -198,7 +198,7 @@
                       <select class="form-control" name="jadpiket">
                         <option value="" disabled selected>Kode Piket</option>
                         @foreach($jadpiket as $itemP)
-                        <option value="{{$itemP->kode_piket}}">{{$itemP->hari}}</option>
+                        <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>
                         @endforeach
                       </select>
                       {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
