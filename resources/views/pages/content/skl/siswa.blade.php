@@ -26,6 +26,7 @@
               <th>NIS</th>
               <th>Nama</th>
               <th>Kode Kelas</th>
+              <th>Kode Piket</th>
               <th>ALamat</th>
               <th>Option</th>
             </tr>
@@ -37,6 +38,7 @@
               <td>{{$item->NIS}}</td>
               <td>{{$item->nama_siswa}}</td>
               <td>{{$item->kode_kelas}}</td>
+              <td>{{$item->kode_piket}}</td>
               <td>{{$item->alamat}}</td>
               <td>
                   <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_siswa}}"></button>
@@ -89,6 +91,19 @@
                   </div>
                 </div>
                 <br><br>
+                <div class="form-group">
+                    <label for="kodeguru" class="col-sm-4 control-label">Kode Piket</label>
+                    <div class="col-sm-8">
+                      <select class="form-control" name="kode_guru">
+                        <option value="" disabled selected>Kode Piket</option>
+                        @foreach($data as $kelas)
+                        <option value="{{$item->kode_piket}}">{{$kelas->kode_piket}}</option>
+                        @endforeach
+                      </select>
+                      {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
+                    </div>
+                  </div>
+                  <br><br>
                 <div class="form-group">
                     <label for="alamat" class="col-sm-4 control-label">Alamat</label>
                     <div class="col-sm-8">
@@ -174,6 +189,19 @@
                     <label for="kode_kelas" class="col-sm-4 control-label">Kode Kelas</label>
                     <div class="col-sm-8">
                       <input type="text" class="form-control" name='kode_kelas' id="kode_kelas" placeholder="kode_kelas" value="{{$item->kode_kelas}}">
+                    </div>
+                  </div>
+                  <br><br>
+                  div class="form-group">
+                    <label for="kodeguru" class="col-sm-4 control-label">Kode Piket</label>
+                    <div class="col-sm-8">
+                      <select class="form-control" name="kode_guru">
+                        <option value="" disabled selected>Kode Piket</option>
+                        @foreach($data as $kelas)
+                        <option value="{{$item->kode_piket}}">{{$kelas->kode_piket}}</option>
+                        @endforeach
+                      </select>
+                      {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                     </div>
                   </div>
                   <br><br>

@@ -64,7 +64,7 @@
         <h4 class="modal-title">Add new Mapel</h4>
       </div>
       {{-- <form  action="addmapel" method="post"> --}}
-          {!! Form::open(['route' => 'add' , 'method' => 'post'])!!}
+          {!! Form::open(['route' => 'sekolah.add' , 'method' => 'post'])!!}
       <div class="modal-body">
           <div class="box-body">
               <div class="form-group">
@@ -123,7 +123,7 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">delete Mapel</h4>
               </div>
-              {!! Form::open(['route' => 'delete',$item->id_mapel, 'method' => 'delete' ]) !!}
+              {!! Form::open(['route' => 'sekolah.delete',$item->id_mapel, 'method' => 'delete' ]) !!}
               <div class="modal-body">
               <input type="hidden" name="id" value="{{$item->id_mapel}}">
               <p>Apakah anda yakin ingin menghapus mapel :{{$item->mapel}}</p>
@@ -150,7 +150,7 @@
                     <span aria-hidden="true">&times;</span></button>
                   <h4 class="modal-title">Edit Mapel</h4>
                 </div>
-                {!! Form::open(['route' => 'edit',$item->id_mapel, 'method' => 'PUT' ]) !!}
+                {!! Form::open(['route' => 'sekolah.edit',$item->id_mapel, 'method' => 'PUT' ]) !!}
                 <div class="modal-body">
                 <input type="hidden" name="id" value="{{$item->id_mapel}}">
                 

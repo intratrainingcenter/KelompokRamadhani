@@ -24,9 +24,9 @@ Route::resource('guru', 'GuruController');
     
 // });
 Route::prefix('sekolah')->group(function (){
-    route::post('add', 'MapelController@add')->name('add');
-    route::delete('delete', 'MapelController@delete')->name('delete');
-    route::put('edit', 'MapelController@edit')->name('edit');
+    route::post('add', 'MapelController@add')->name('sekolah.add');
+    route::delete('delete', 'MapelController@delete')->name('sekolah.delete');
+    route::put('edit', 'MapelController@edit')->name('sekolah.edit');
 
     route::post('addsiswa', 'SiswaController@addsiswa')->name('addsiswa');
     route::delete('deletesiswa', 'SiswaController@deletesiswa')->name('deletesiswa');
