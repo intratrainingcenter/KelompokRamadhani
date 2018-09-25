@@ -33,3 +33,8 @@ Route::prefix('KLS')->group(function(){
     route::put('update', 'KelasController@edit')->name('update');
 });
 
+Route::prefix('PKT')->group(function(){
+	route::post('add', 'PiketController@add')->name('add');
+	route::delete('delete', 'PiketController@delete')->name('delete');
+});
+
