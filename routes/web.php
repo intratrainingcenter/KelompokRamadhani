@@ -39,13 +39,14 @@ Route::prefix('sekolah')->group(function (){
 });
 
 Route::prefix('KLS')->group(function(){
-	route::delete('delete', 'KelasController@delete')->name('delete');
-	route::post('add', 'KelasController@add')->name('add');
-    route::put('update', 'KelasController@edit')->name('update');
+	route::delete('deletekelas', 'KelasController@delete')->name('deletekelas');
+	route::post('addkelas', 'KelasController@add')->name('addkelas');
+    route::put('updatekelas', 'KelasController@edit')->name('updatekelas');
 });
 
 Route::prefix('PKT')->group(function(){
 	route::post('add', 'PiketController@add')->name('add');
 	route::delete('delete', 'PiketController@delete')->name('delete');
+    route::put('update', 'PiketController@edit')->name('update');
 });
 

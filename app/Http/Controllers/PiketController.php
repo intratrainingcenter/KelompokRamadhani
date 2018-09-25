@@ -10,6 +10,7 @@ class PiketController extends Controller
     public function index()
     {
     	$data = jadpiket::all();
+    	// dd($data);
         return view ('pages/content/skl/piket', compact('data'));
     }
 
@@ -28,6 +29,17 @@ class PiketController extends Controller
     {
     	$hapus = jadpiket::where('id', $request->id);
     	$hapus->delete();
+
+    	return redirect('piket');
+    }
+
+    public function edit(Request $request)
+    {
+    	$update = jadpiket::find($request->id);
+    	$update->update([
+    		'kode_piket'	=>	$request->kode_piket,
+    		'hari'			=>	$request->hari
+    	]);
 
     	return redirect('piket');
     }

@@ -115,7 +115,56 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
-  @endforeach
    {{-- /.modal --}}
+
+   <div class="modal fade" id="modal-edit{{$piket->id}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Update Piket</h4>
+        </div>
+        {!! Form::open(['route' => 'update',$piket->id, 'method' => 'PUT' ]) !!}
+        <div class="modal-body">
+        <input type="hidden" name="id" value="{{$piket->id}}">
+                
+        <div class="box-body">
+        	<div class="form-group">
+              <label for="kode_piket" class="col-sm-4 control-label">Kode Piket</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="kode_piket" id="kode_piket" placeholder="Kode Piket" value="{{$piket->kode_piket}}">
+              </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+                <label for="hari" class="col-sm-4 control-label">Hari</label>
+                <div class="col-sm-8">
+                <select class="form-control" name="hari">
+                      <option value="{{$piket->hari}}" disabled selected>{{$piket->hari}}</option>
+                      <option value="senin">Senin</option>
+                        <option value="selasa">Selasa</option>
+                        <option value="rabu">Rabu</option>
+                        <option value="kamis">Kamis</option>
+                        <option value="jumat">Jum'at</option>
+                        <option value="sabtu">Sabtu</option>
+                    </select>
+                </div>
+              </div>
+              <br>
+         </div>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        {!! Form::close() !!}
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+  @endforeach
 </div>
 @endsection

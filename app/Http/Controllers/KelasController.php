@@ -10,8 +10,10 @@ class KelasController extends Controller
 {
     public function index()
     {
-    	$data = kelas::with(['detailguru'])->get();
-        return view ('pages/content/skl/kelas', compact('data'));
+    	$data = kelas::with('detailguru')->get();
+        $guru = guru::all();
+        // dd($guru);
+        return view ('pages/content/skl/kelas', compact('data','guru'));
     }
 
     public function delete(Request $request)
