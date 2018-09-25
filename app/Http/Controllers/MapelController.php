@@ -5,15 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\mapel;
+use App\guru;
+
 
 class MapelController extends Controller
 {
     public function index()
     {
-        // $mapel = mapel::all();
+        $guru = guru::all();
         $mapel = DB::table('mapels')->select('*')->orderBy('id_mapel','DESC')->get();
         // dd($mapel);
-        return view ('pages/content/skl/mapel',['mapel'=>$mapel]);
+        return view ('pages/content/skl/mapel',['mapel'=>$mapel,'guru'=>$guru]);
     }
 
     public function add(Request $request)

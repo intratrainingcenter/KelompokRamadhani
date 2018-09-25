@@ -68,9 +68,15 @@
       <div class="modal-body">
           <div class="box-body">
               <div class="form-group">
-                  <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
+                  <label for="kode_gur" class="col-sm-4 control-label">Kode Guru</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru" value="">
+                    <select class="form-control" name="kode_guru">
+                      <option value="" disabled selected>Kode Guru</option>
+                @foreach ($guru as $itemP)                       
+                    <option value="{{$itemP->kode_guru}}">{{$itemP->kode_guru}} - {{$itemP->nama_guru}}</option>
+                @endforeach    
+                    </select>
+                    {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                   </div>
                 </div>
                 <br><br>
@@ -156,9 +162,14 @@
                 
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
+                        <label for="kode_gur" class="col-sm-4 control-label">Kode Guru</label>
                         <div class="col-sm-8">
-                        <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="kode Guru" value="{{$item->kode_guru}}">
+                          <select class="form-control" name="kode_guru">
+                            <option value="" disabled selected>Kode Guru</option>
+                      @foreach ($guru as $itemP)                       
+                          <option value="{{$itemP->kode_guru}}">{{$itemP->kode_guru}} - {{$itemP->nama_guru}}</option>
+                      @endforeach    
+                          </select>
                         </div>
                       </div>
                       <br><br>
