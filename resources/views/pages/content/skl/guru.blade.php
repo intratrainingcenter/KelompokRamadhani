@@ -1,6 +1,6 @@
 @extends('pages/navmenu.home')
 @section('h1')Sekolah @endsection
-@section('h2')Siswa @endsection
+@section('h2')Guru @endsection
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -23,24 +23,22 @@
         <thead> 
             <tr>
               <th>#</th>
-              <th>NIS</th>
-              <th>Nama</th>
-              <th>Kode Kelas</th>
-              <th>ALamat</th>
+              <th>Kode Guru</th>
+              <th>Nama Guru</th>
+              <th>Kode Mapel</th>
               <th>Option</th>
             </tr>
         </thead>
         <tbody>
-    @foreach ($siswa as $item)
+    @foreach ($guru as $item)
             <tr>
             <td>{{$loop->iteration}}</td>
-              <td>{{$item->NIS}}</td>
-              <td>{{$item->nama_siswa}}</td>
-              <td>{{$item->kode_kelas}}</td>
-              <td>{{$item->alamat}}</td>
+              <td>{{$item->kode_guru}}</td>
+              <td>{{$item->nama_guru}}</td>
+              <td>{{$item->kode_mapel}}</td>
               <td>
-                  <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_siswa}}"></button>
-                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_siswa}}"> </button>                            
+                  <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_guru}}"></button>
+                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_guru}}"> </button>                            
               </td>
             </tr>
      @endforeach
@@ -62,41 +60,34 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title">Add new siswa</h4>
+        <h4 class="modal-title">Add Guru</h4>
       </div>
       {{-- <form  action="addmapel" method="post"> --}}
-          {!! Form::open(['route' => 'addsiswa' , 'method' => 'post'])!!}
+          {!! Form::open(['route' => 'addguru' , 'method' => 'post'])!!}
       <div class="modal-body">
           <div class="box-body">
               <div class="form-group">
-                  <label for="NIS" class="col-sm-4 control-label">NIS</label>
+                  <label for="kode_guru" class="col-sm-4 control-label">kode_guru</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="NIS" id="NIS" placeholder="NIS" value="">
+                    <input type="text" class="form-control" name="kode_guru" id="kode_guru" placeholder="Kode Guru" value="">
                   </div>
                 </div>
                 <br><br>
               <div class="form-group">
-                <label for="nama_siswa" class="col-sm-4 control-label">Nama Siswa</label>
+                <label for="nama_guru" class="col-sm-4 control-label">Nama guru</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" placeholder="Nama">
+                  <input type="text" class="form-control" name="nama_guru" id="nama_guru" placeholder="Nama">
                 </div>
               </div>
               <br><br>
               <div class="form-group">
-                  <label for="kode_kelas" class="col-sm-4 control-label">Kode Kelas</label>
+                  <label for="kode_mapel" class="col-sm-4 control-label">Kode Mapel</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name='kode_kelas' id="kode_kelas" placeholder="kode_kelas">
+                    <input type="text" class="form-control" name='kode_mapel' id="kode_mapel" placeholder="Mapel yang diajarkan">
                   </div>
                 </div>
                 <br><br>
-                <div class="form-group">
-                    <label for="alamat" class="col-sm-4 control-label">Alamat</label>
-                    <div class="col-sm-8">
-                      <input type="text" class="form-control" name="alamat" id="alamat"  placeholder="Alamat">
-                    </div>
-                  </div>
-                  <br> 
-
+            
            </div>  
       </div>
       <div class="modal-footer">
@@ -115,19 +106,19 @@
 <!-- /.modal -->
 
 <!-- /.modal-HAPUS -->
-@foreach ($siswa as $item)
-<div class="modal fade" id="modal-default{{$item->id_siswa}}">
+@foreach ($guru as $item)
+<div class="modal fade" id="modal-default{{$item->id_guru}}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Delete Siswa</h4>
+                <h4 class="modal-title">Delete Guru</h4>
               </div>
-              {!! Form::open(['route' => 'deletesiswa',$item->id_siswa, 'method' => 'delete' ]) !!}
+              {!! Form::open(['route' => 'deleteguru',$item->id_guru, 'method' => 'delete' ]) !!}
               <div class="modal-body">
-              <input type="hidden" name="id" value="{{$item->id_siswa}}">
-              <p>Apakah anda yakin ingin menghapus siswa :{{$item->NIS}}</p>
+              <input type="hidden" name="id" value="{{$item->id_guru}}">
+              <p>Apakah anda yakin ingin menghapus guru :{{$item->kode_guru}}</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
@@ -143,51 +134,42 @@
 
 <!-- /.modal-EDIT -->
 
-        <div class="modal fade" id="modal-edit{{$item->id_siswa}}">
+        <div class="modal fade" id="modal-edit{{$item->id_guru}}">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Edit Siswa</h4>
+                  <h4 class="modal-title">Edit Guru</h4>
                 </div>
-                {!! Form::open(['route' => 'editsiswa',$item->id_siswa, 'method' => 'PUT' ]) !!}
+                {!! Form::open(['route' => 'editguru',$item->id_guru, 'method' => 'PUT' ]) !!}
                 <div class="modal-body">
-                <input type="hidden" name="id" value="{{$item->id_siswa}}">
+                <input type="hidden" name="id" value="{{$item->id_guru}}">
                 
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="NIS" class="col-sm-4 control-label">NIS</label>
+                    <label for="kode_guru" class="col-sm-4 control-label">Kode Guru</label>
                     <div class="col-sm-8">
-                    <input type="text" class="form-control" name="NIS" id="NIS" placeholder="NIS" value="{{$item->NIS}}">
+                    <input type="text" class="form-control" name="kode_guru" id="kode_guru" placeholder="kode_guru" value="{{$item->kode_guru}}">
                     </div>
                   </div>
                   <br><br>
                 <div class="form-group">
-                  <label for="nama_siswa" class="col-sm-4 control-label">Nama Siswa</label>
+                  <label for="nama_guru" class="col-sm-4 control-label">Nama Guru</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="nama_siswa" id="nama_siswa" placeholder="Nama" value="{{$item->nama_siswa}}">
+                    <input type="text" class="form-control" name="nama_guru" id="nama_guru" placeholder="Nama" value="{{$item->nama_guru}}">
                   </div>
                 </div>
                 <br><br>
                 <div class="form-group">
-                    <label for="kode_kelas" class="col-sm-4 control-label">Kode Kelas</label>
+                    <label for="kode_mapel" class="col-sm-4 control-label">Kode Mapel</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name='kode_kelas' id="kode_kelas" placeholder="kode_kelas" value="{{$item->kode_kelas}}">
+                      <input type="text" class="form-control" name='kode_mapel' id="kode_mapel" placeholder="kode_mapel" value="{{$item->kode_mapel}}">
                     </div>
                   </div>
-                  <br><br>
-                  <div class="form-group">
-                      <label for="alamat" class="col-sm-4 control-label">Alamat</label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" name="alamat" id="alamat"  placeholder="Alamat" value="{{$item->alamat}}">
-                      </div>
-                    </div>
-                    <br> 
+                  <br>
   
-      
                  </div>  
-
 
                 </div>
                 <div class="modal-footer">
