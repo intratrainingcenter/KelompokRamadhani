@@ -20,15 +20,7 @@ class CreateSiswasTable extends Migration
             $table->string('nama_siswa');
             $table->string('kode_kelas');
             $table->string('alamat');
-            $table->date('tgl_lahir');
 
-
-            
-
-
-
-
-            
         });
     }
 

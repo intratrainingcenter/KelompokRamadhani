@@ -18,7 +18,7 @@ class CreateGurusTable extends Migration
             $table->timestamps();
             $table->string('kode_guru',20);
             $table->string('nama_guru',20);
-            $table->string('mapel',20);
+            $table->string('kode_mapel',20);
 
 
         });
