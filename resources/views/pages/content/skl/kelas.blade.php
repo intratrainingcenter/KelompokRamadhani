@@ -10,7 +10,7 @@
 
         <div class="box-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
-            <button type="button" class="btn-lg btn-success fa fa-plus-square" title="Tambah Mapel" data-toggle="modal" data-target="#modal-success"> </button>
+            <button type="button" class="btn-lg btn-success fa fa-plus-square add" title="Tambah Mapel" data-toggle="modal" data-target="#modal-success"> </button>
             <div class="input-group-btn">
             </div>
           </div>
@@ -60,8 +60,8 @@
                   <div class="col-sm-8">
                     <select class="form-control" name="kode_guru">
                       <option value="" disabled selected>Wali Kelas</option>
-                      @foreach($data as $kelas)
-                      <option value="{{$kelas->detailguru->kode_guru}}">{{$kelas->detailguru->nama_guru}}</option>
+                      @foreach($data as $class)
+                      <option value="{{$class->detailguru->kode_guru}}">{{$class->detailguru->nama_guru}}</option>
                       @endforeach
                     </select>
                     {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
