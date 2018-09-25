@@ -10,4 +10,8 @@ class siswa extends Model
     protected $primaryKey = 'id_siswa';
     protected $fillable = ['id_siswa','NIS','nama_siswa','kode_kelas','alamat','tgl_lahir'];
 
+    public function detailguru()
+    {
+    	return $this->hasOne('App\jadpiket','kode_piket');
+    }
 }

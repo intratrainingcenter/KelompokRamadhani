@@ -92,13 +92,13 @@
                 </div>
                 <br><br>
                 <div class="form-group">
-                    <label for="kodeguru" class="col-sm-4 control-label">Kode Piket</label>
+                    <label for="kode_piket" class="col-sm-4 control-label">Kode Piket</label>
                     <div class="col-sm-8">
-                      <select class="form-control" name="kode_guru">
+                      <select class="form-control" name="kode_piket">
                         <option value="" disabled selected>Kode Piket</option>
-                        @foreach($data as $kelas)
-                        <option value="{{$item->kode_piket}}">{{$kelas->kode_piket}}</option>
-                        @endforeach
+                  @foreach ($jadpiket as $itemP)                       
+                        <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>
+                  @endforeach    
                       </select>
                       {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                     </div>
@@ -192,13 +192,13 @@
                     </div>
                   </div>
                   <br><br>
-                  div class="form-group">
-                    <label for="kodeguru" class="col-sm-4 control-label">Kode Piket</label>
+                  <div class="form-group">
+                    <label for="jadpiket" class="col-sm-4 control-label">Kode Piket</label>
                     <div class="col-sm-8">
-                      <select class="form-control" name="kode_guru">
+                      <select class="form-control" name="jadpiket">
                         <option value="" disabled selected>Kode Piket</option>
-                        @foreach($data as $kelas)
-                        <option value="{{$item->kode_piket}}">{{$kelas->kode_piket}}</option>
+                        @foreach($jadpiket as $itemP)
+                        <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>
                         @endforeach
                       </select>
                       {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
