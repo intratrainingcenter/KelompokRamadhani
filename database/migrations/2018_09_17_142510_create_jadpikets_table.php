@@ -14,9 +14,9 @@ class CreateJadpiketsTable extends Migration
     public function up()
     {
         Schema::create('jadpikets', function (Blueprint $table) {
-            $table->increments('id_jadpiket');
+            $table->increments('id');
             $table->timestamps();
-            $table->string('NIS');
+            $table->string('kode_piket');
             $table->string('hari');
 
 

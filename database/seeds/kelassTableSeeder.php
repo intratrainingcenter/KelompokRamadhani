@@ -14,7 +14,7 @@ class kelassTableSeeder extends Seeder
     {
          DB::table('kelas')->insert([
         	[
-        		'id_kelas'		=>	'1',
+        		'id'      		=>	'1',
         		'kode_guru'		=>	'BI12',
         		'nama_kelas'	=>	'XII',
         		'jml_siswa'		=>	'32',
