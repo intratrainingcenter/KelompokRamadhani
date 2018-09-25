@@ -141,8 +141,13 @@
                 <label for="hari" class="col-sm-4 control-label">Hari</label>
                 <div class="col-sm-8">
                 <select class="form-control" name="hari">
-                      <option value="" disabled>Hari</option>
-                      <option value="{{$piket->hari}}" selected>{{$piket->hari}}</option>
+                      <option value="{{$piket->hari}}" disabled selected>{{$piket->hari}}</option>
+                      <option value="senin">Senin</option>
+                        <option value="selasa">Selasa</option>
+                        <option value="rabu">Rabu</option>
+                        <option value="kamis">Kamis</option>
+                        <option value="jumat">Jum'at</option>
+                        <option value="sabtu">Sabtu</option>
                     </select>
                 </div>
               </div>
