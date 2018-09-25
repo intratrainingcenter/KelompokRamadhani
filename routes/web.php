@@ -30,5 +30,6 @@ Route::prefix('sekolah')->group(function (){
 Route::prefix('KLS')->group(function(){
 	route::delete('delete', 'KelasController@delete')->name('delete');
 	route::post('add', 'KelasController@add')->name('add');
+    route::put('update', 'KelasController@edit')->name('update');
 });
 

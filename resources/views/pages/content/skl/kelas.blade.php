@@ -33,8 +33,8 @@
             <td>{{$kelas->detailguru->nama_guru}}</td>
             <td>{{$kelas->jml_siswa}}</td>
             <td>
-            	<button type="button" class="btn-lg btn-warning"><li class="fa fa-edit"></li></button>
-            	<button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$kelas->id_kelas}}"><li class="fa fa-bitbucket"></li></button>
+            	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$kelas->id}}"><li class="fa fa-edit"></li></button>
+            	<button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$kelas->id}}"><li class="fa fa-bitbucket"></li></button>
             </td>
           </tr>
           @endforeach
@@ -100,17 +100,17 @@
 
   {{-- modal delete --}}
   @foreach($data as $kelas)
-  <div class="modal modal-danger fade" id="modal-danger{{$kelas->id_kelas}}">
+  <div class="modal modal-danger fade" id="modal-danger{{$kelas->id}}">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Hapus Data Kelas Ini</h4>
+          <h4 class="modal-title">Hapus Data Kelas</h4>
         </div>
-        {!! Form::open(['route' => 'delete',$kelas->id_kelas, 'method' => 'delete' ]) !!}
+        {!! Form::open(['route' => 'delete',$kelas->id, 'method' => 'delete' ]) !!}
         <div class="modal-body">
-          <input type="hidden" name="id" value="{{$kelas->id_kelas}}">
+          <input type="hidden" name="id" value="{{$kelas->id}}">
           <p>Apakah anda yakin ingin menghapus data ini ?</p>
         </div>
         <div class="modal-footer">
@@ -123,7 +123,59 @@
     </div>
     <!-- /.modal-dialog -->
   </div>
+   {{-- /.modal --}}
+
+   <div class="modal fade" id="modal-edit{{$kelas->id}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Update Kelas</h4>
+        </div>
+        {!! Form::open(['route' => 'update',$kelas->id, 'method' => 'PUT' ]) !!}
+        <div class="modal-body">
+        <input type="hidden" name="id" value="{{$kelas->id}}">
+                
+        <div class="box-body">
+            <div class="form-group">
+                <label for="kodeguru" class="col-sm-4 control-label">Wali Kelas</label>
+                <div class="col-sm-8">
+                <select class="form-control" name="kode_guru">
+                      <option value="" disabled>Wali Kelas</option>
+                      <option value="{{$kelas->detailguru->kode_guru}}" selected>{{$kelas->detailguru->nama_guru}}</option>
+                    </select>
+                </div>
+              </div>
+              <br><br>
+            <div class="form-group">
+              <label for="nama_kelas" class="col-sm-4 control-label">Nama Kelas</label>
+              <div class="col-sm-8">
+                <input type="text" class="form-control" name="nama_kelas" id="nama_kelas" placeholder="Nama Kelas" value="{{$kelas->nama_kelas}}">
+              </div>
+            </div>
+            <br><br>
+            <div class="form-group">
+                <label for="jml_siswa" class="col-sm-4 control-label">Jumlah Siswa</label>
+                <div class="col-sm-8">
+                  <input type="text" class="form-control" name='jml_siswa' id="jml_siswa" placeholder="Jumlah Siswa" value="{{$kelas->jml_siswa}}">
+                </div>
+              </div>
+              <br>
+         </div>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        {!! Form::close() !!}
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
   @endforeach
-  {{-- /.modal --}}
 </div>
 @endsection

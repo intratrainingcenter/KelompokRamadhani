@@ -17,7 +17,7 @@ class KelasController extends Controller
     public function delete(Request $request)
     {
         // dd($request->all());
-    	$hapus = kelas::where('id_kelas',$request->id);
+    	$hapus = kelas::where('id',$request->id);
     	$hapus->delete();
         // dd($delete);
 
@@ -32,6 +32,18 @@ class KelasController extends Controller
         $tabel->jml_siswa    =  $request->jml_siswa;
         $tabel->orderBy('id_kelas DESC');
         $tabel->save();
+
+        return redirect('kelas');
+    }
+
+    public function edit(Request $request)
+    {
+        $update = kelas::find($request->id);
+        $update->update([
+            'kode_guru' =>  $request->kode_guru,
+            'nama_kelas'=>  $request->nama_kelas,
+            'jml_siswa' =>  $request->jml_siswa
+        ]);
 
         return redirect('kelas');
     }
