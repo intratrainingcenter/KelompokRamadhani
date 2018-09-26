@@ -32,7 +32,7 @@
         <tbody>
     @foreach ($guru as $item)
             <tr>
-            <td>{{$loop->iteration}}</td>
+              <td>{{$loop->iteration}}</td>
               <td>{{$item->kode_guru}}</td>
               <td>{{$item->nama_guru}}</td>
               <td>{{$item->kode_mapel}}</td>

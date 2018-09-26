@@ -24,7 +24,7 @@ class GuruController extends Controller
     public function addguru(Request $request)
     {
         // dd($request);
-        $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();
+        $cek =guru::where('kode_guru','=',$request->kode_guru)->doesntExist();
         // dd($cek);
         if($cek == true)
         {
