@@ -12,36 +12,37 @@ class MapelController extends Controller
 {
     public function index()
     {
-        $guru = guru::all();
-        $mapel = DB::table('mapels')->select('*')->orderBy('id_mapel','DESC')->get();
+        $object = DB::table('mapels')->select('*')->orderBy('id_mapel','DESC')->get();
         // dd($mapel);
-        return view ('pages/content/skl/mapel',['mapel'=>$mapel,'guru'=>$guru]);
+        return view ('pages/content/skl/mapel',['mapel'=>$object]);
     }
 
     public function add(Request $request)
     {
-        // dd($request);
+        $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();
+        // dd($cek);
+        if($cek == true)
+        {
+          $table = new mapel;
+          $table->kode_mapel = $request->kode_mapel;
+          $table->mapel = $request->mapel;
+          $table->nkm = $request->nkm;
+          $table->orderBy('id_mapel DESC');
+          $table->save();
 
-          $tabel = new mapel;
-          $tabel->kode_guru = $request->kode_guru;
-          $tabel->kode_mapel = $request->kode_mapel;
-          $tabel->mapel = $request->mapel;
-          $tabel->nkm = $request->nkm;
-          $tabel->orderBy('id_mapel DESC');
-          $tabel->save();
-
-          
-
-        //   dd($tabel);
             return redirect('mapel');
+        }
+        else{
+            return redirect('mapel');
+        }
 
     }
     
     public function delete(Request $request)
     {
         // dd($request);
-        $hapus = mapel::where('id_mapel',$request->id);
-        $hapus->delete();
+        $delete = mapel::where('id_mapel',$request->id);
+        $delete->delete();
 
         return redirect('mapel');
 
@@ -50,14 +51,23 @@ class MapelController extends Controller
     public function edit(Request $request)
     {
         // dd($request);
+        $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();
+        
+        if($cek == true)
+        {
         $update = mapel::find($request->id);
-        $update->kode_guru = $request->kode_guru;
-        $update->kode_mapel = $request->kode_mapel;
         $update->mapel = $request->mapel;
         $update->nkm = $request->nkm;
         $update->save();
 
-      return redirect('mapel');
+        return redirect('mapel');
+        }
+        else{
+
+        return redirect('mapel');
+
+        }
+
 
 
     }

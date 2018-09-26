@@ -11,32 +11,36 @@ class SiswaController extends Controller
 {
     public function index()
     {
-        $jadpiket = jadpiket::all();
-        $siswa = DB::table('siswas')->select('siswas.*')->orderBy('id_siswa','DESC')->get();
-        return view ('pages/content/skl/siswa',['siswa'=>$siswa,'jadpiket'=>$jadpiket]);
+        $picket = jadpiket::all();
+        $student = DB::table('siswas')->select('siswas.*')->orderBy('id_siswa','DESC')->get();
+        return view ('pages/content/skl/siswa',['siswa'=>$student,'jadpiket'=>$picket]);
     }
 
     public function addsiswa(Request $request)
     {
-        // dd($request);
-
-          $tabel = new siswa;
-          $tabel->NIS = $request->NIS;
-          $tabel->nama_siswa = $request->nama_siswa;
-          $tabel->kode_kelas = $request->kode_kelas;
-          $tabel->kode_piket = $request->kode_piket;
-          $tabel->alamat = $request->alamat;
-          $tabel->orderBy('id_siswa', 'DESC');
-          $tabel->save();
+        $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();  
+        if($cek == true)        
+        {
+          $table = new siswa;
+          $table->NIS = $request->NIS;
+          $table->nama_siswa = $request->nama_siswa;
+          $table->kode_kelas = $request->kode_kelas;
+          $table->kode_piket = $request->kode_piket;
+          $table->alamat = $request->alamat;
+          $table->orderBy('id_siswa', 'DESC');
+          $table->save();
             return redirect('siswa');
-
+        }
+        else{
+            return redirect('siswa');
+        }
     }
     
     public function deletesiswa(Request $request)
     {
         // dd($request);
-        $hapus = siswa::where('id_siswa',$request->id);
-        $hapus->delete();
+        $delete = siswa::where('id_siswa',$request->id);
+        $delete->delete();
 
         return redirect('siswa');
 

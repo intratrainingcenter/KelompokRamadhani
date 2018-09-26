@@ -28,12 +28,12 @@ class KelasController extends Controller
 
     public function add(Request $request)
     {
-        $tabel = new kelas;
-        $tabel->kode_guru    =  $request->kode_guru;
-        $tabel->nama_kelas   =  $request->nama_kelas;
-        $tabel->jml_siswa    =  $request->jml_siswa;
-        $tabel->orderBy('id_kelas DESC');
-        $tabel->save();
+        $table = new kelas;
+        $table->kode_guru    =  $request->kode_guru;
+        $table->nama_kelas   =  $request->nama_kelas;
+        $table->jml_siswa    =  $request->jml_siswa;
+        $table->orderBy('id_kelas DESC');
+        $table->save();
 
         return redirect('kelas');
     }

@@ -1,6 +1,6 @@
 @extends('pages/navmenu.home')
-@section('h1')Sekolah @endsection
-@section('h2')Guru @endsection
+@section('h1')School @endsection
+@section('h2')Teachers @endsection
 @section('content')
 <div class="row">
     <div class="col-xs-12">
@@ -25,7 +25,7 @@
               <th>#</th>
               <th>Kode Guru</th>
               <th>Nama Guru</th>
-              <th>Kode Mapel</th>
+              <th>Mapel</th>
               <th>Option</th>
             </tr>
         </thead>
@@ -81,13 +81,18 @@
               </div>
               <br><br>
               <div class="form-group">
-                  <label for="kode_mapel" class="col-sm-4 control-label">Kode Mapel</label>
+                  <label for="kode_mapel" class="col-sm-4 control-label">Mapel</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name='kode_mapel' id="kode_mapel" placeholder="Mapel yang diajarkan">
+                    <select class="form-control" name="kode_mapel">
+                      <option value="" disabled selected>Mapel</option>
+                      @foreach($data as $in)
+                    <option value="{{$in->kode_mapel}}">{{$in->kode_mapel}} - {{$in->mapel}}</option>
+                      @endforeach
+                    </select>
+                    {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                   </div>
                 </div>
                 <br><br>
-            
            </div>  
       </div>
       <div class="modal-footer">
@@ -162,15 +167,21 @@
                 </div>
                 <br><br>
                 <div class="form-group">
-                    <label for="kode_mapel" class="col-sm-4 control-label">Kode Mapel</label>
+                    <label for="kode_mapel" class="col-sm-4 control-label">Mapel</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name='kode_mapel' id="kode_mapel" placeholder="kode_mapel" value="{{$item->kode_mapel}}">
+                      <select class="form-control" name="kode_mapel">                
+                      <option value="{{$item->kode_mapel}}"> {{$item->kode_mapel}} - {{$item->mapel}}</option>
+                      @foreach($data as $in)
+                      <option value="{{$in->kode_mapel}}">{{$in->kode_mapel}} - {{$in->mapel}}</option>
+                        @endforeach
+                      
+                      </select>
+                      {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                     </div>
                   </div>
-                  <br>
+                  <br><br>
   
                  </div>  
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
