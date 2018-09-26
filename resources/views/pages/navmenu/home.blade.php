@@ -8,7 +8,7 @@
     <li><a href="{{route('guru.index')}}"><i class="fa fa-group"></i> Teacher </a></li>
     <li><a href="{{route('piket.index')}}"><i class="fa fa-trash-o"></i> Picket </a></li>
     <li><a href="{{route('siswa.index')}}"><i class="fa fa-child"></i> Students </a></li>  
-    <li><a href="{{route('absen.index')}}"><i class="fa fa-list"></i> Attendance </a></li>
+    <li><a href="{{route('absen.index')}}"><i class="fa fa-book"></i> Attendance </a></li>
 
  
   </li> 
