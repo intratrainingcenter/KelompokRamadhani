@@ -18,8 +18,9 @@ class SiswaController extends Controller
 
     public function addsiswa(Request $request)
     {
-        // dd($request);
-
+        $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();  
+        if($cek == true)        
+        {
           $tabel = new siswa;
           $tabel->NIS = $request->NIS;
           $tabel->nama_siswa = $request->nama_siswa;
@@ -29,7 +30,10 @@ class SiswaController extends Controller
           $tabel->orderBy('id_siswa', 'DESC');
           $tabel->save();
             return redirect('siswa');
-
+        }
+        else{
+            return redirect('siswa');
+        }
     }
     
     public function deletesiswa(Request $request)

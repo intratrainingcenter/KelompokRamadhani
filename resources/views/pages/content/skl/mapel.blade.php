@@ -22,7 +22,6 @@
         <thead> 
             <tr>
               <th>#</th>
-              <th>Kode guru</th>
               <th>Kode Mapel</th>
               <th>Mata Pelajaran</th>
               <th>NKM</th>
@@ -33,7 +32,6 @@
           @foreach ($mapel as $item)
             <tr>
               <td>{{$loop->iteration}}</td>
-              <td>{{$item->kode_guru}}</td>
               <td>{{$item->kode_mapel}}</td>
               <td>{{$item->mapel}}</td>
               <td>{{$item->nkm}}</td>
@@ -67,19 +65,6 @@
           {!! Form::open(['route' => 'sekolah.add' , 'method' => 'post'])!!}
       <div class="modal-body">
           <div class="box-body">
-              <div class="form-group">
-                  <label for="kode_gur" class="col-sm-4 control-label">Kode Guru</label>
-                  <div class="col-sm-8">
-                    <select class="form-control" name="kode_guru">
-                      <option value="" disabled selected>Kode Guru</option>
-                @foreach ($guru as $itemP)                       
-                    <option value="{{$itemP->kode_guru}}">{{$itemP->kode_guru}} - {{$itemP->nama_guru}}</option>
-                @endforeach    
-                    </select>
-                    {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
-                  </div>
-                </div>
-                <br><br>
               <div class="form-group">
                 <label for="kodemapel" class="col-sm-4 control-label">Kode Mapel</label>
                 <div class="col-sm-8">
@@ -154,32 +139,13 @@
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Edit Mapel</h4>
+                  <h4 class="modal-title">Edit Mapel - {{$item->kode_mapel}}</h4>
                 </div>
                 {!! Form::open(['route' => 'sekolah.edit',$item->id_mapel, 'method' => 'PUT' ]) !!}
                 <div class="modal-body">
                 <input type="hidden" name="id" value="{{$item->id_mapel}}">
                 
                 <div class="box-body">
-                    <div class="form-group">
-                        <label for="kode_gur" class="col-sm-4 control-label">Kode Guru</label>
-                        <div class="col-sm-8">
-                          <select class="form-control" name="kode_guru">
-                            <option value="" disabled selected>Kode Guru</option>
-                      @foreach ($guru as $itemP)                       
-                          <option value="{{$itemP->kode_guru}}">{{$itemP->kode_guru}} - {{$itemP->nama_guru}}</option>
-                      @endforeach    
-                          </select>
-                        </div>
-                      </div>
-                      <br><br>
-                    <div class="form-group">
-                      <label for="kodemapel" class="col-sm-4 control-label">Kode Mapel</label>
-                      <div class="col-sm-8">
-                        <input type="text" class="form-control" name="kode_mapel" id="kodemapel" placeholder="kode Mapel" value="{{$item->kode_mapel}}">
-                      </div>
-                    </div>
-                    <br><br>
                     <div class="form-group">
                         <label for="mapel" class="col-sm-4 control-label">Mata Pelajaran</label>
                         <div class="col-sm-8">

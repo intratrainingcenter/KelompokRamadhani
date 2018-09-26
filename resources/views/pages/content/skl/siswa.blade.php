@@ -7,10 +7,10 @@
       <div class="box">
         <div class="box-header">
           <h3 class="box-title"></h3>
-
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <button type="button" class="btn-lg btn-success fa fa-plus-square" title="Add Siswa" data-toggle="modal" data-target="#modal-success"> </button>                                 
+              <button type="button" class="btn-lg btn-primary fa fa-plus-square add" id="show" title="Add Siswa"> </button>                    
+              <button type="button" class="btn-lg btn-success fa fa-plus-square add" title="Add Siswa" data-toggle="modal" data-target="#modal-success"> </button>                                 
               <div class="input-group-btn">
                
               </div>
@@ -73,7 +73,7 @@
               <div class="form-group">
                   <label for="NIS" class="col-sm-4 control-label">NIS</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name="NIS" id="NIS" placeholder="NIS" value="">
+                    <input type="text" class="form-control nospace" name="NIS" id="NIS" placeholder="NIS" value="" required>
                   </div>
                 </div>
                 <br><br>
@@ -231,5 +231,28 @@
           <!-- /.modal -->
 
     @endforeach
+    <script type="text/javascript">
+   
+      $('#show').click(function() {
+              $('#NIS').val('');
+              $('#nama_siswa').val('');
+              $('#kode_kelas').val('');
+              $("input#NIS").on({
+                keydown: function(e) {
+                  if (e.which === 32)
+                  return false;
+                },
+                change: function() {
+                  this.value = this.value.replace(/\s/g, "");
+                 }
+                });
+              $('#modal-success').modal({
+                keyboard : false,
+                backdrop : 'static'
+              });
+            });
+     
+</script>
 
 @endsection
+
