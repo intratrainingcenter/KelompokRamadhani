@@ -12,9 +12,9 @@ class MapelController extends Controller
 {
     public function index()
     {
-        $mapel = DB::table('mapels')->select('*')->orderBy('id_mapel','DESC')->get();
+        $object = DB::table('mapels')->select('*')->orderBy('id_mapel','DESC')->get();
         // dd($mapel);
-        return view ('pages/content/skl/mapel',['mapel'=>$mapel]);
+        return view ('pages/content/skl/mapel',['mapel'=>$object]);
     }
 
     public function add(Request $request)
@@ -23,12 +23,12 @@ class MapelController extends Controller
         // dd($cek);
         if($cek == true)
         {
-          $tabel = new mapel;
-          $tabel->kode_mapel = $request->kode_mapel;
-          $tabel->mapel = $request->mapel;
-          $tabel->nkm = $request->nkm;
-          $tabel->orderBy('id_mapel DESC');
-          $tabel->save();
+          $table = new mapel;
+          $table->kode_mapel = $request->kode_mapel;
+          $table->mapel = $request->mapel;
+          $table->nkm = $request->nkm;
+          $table->orderBy('id_mapel DESC');
+          $table->save();
 
             return redirect('mapel');
         }
@@ -41,8 +41,8 @@ class MapelController extends Controller
     public function delete(Request $request)
     {
         // dd($request);
-        $hapus = mapel::where('id_mapel',$request->id);
-        $hapus->delete();
+        $delete = mapel::where('id_mapel',$request->id);
+        $delete->delete();
 
         return redirect('mapel');
 
