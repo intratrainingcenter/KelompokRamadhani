@@ -2,6 +2,31 @@
 @section('h1')School @endsection
 @section('h2')Students @endsection
 @section('content')
+
+@if($message = Session::get('yeah'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-success  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+  @elseif($message = Session::get('update'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-warning  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+  @elseif($message = Session::get('dele'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-danger  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+
+@endif
+
 <div class="row">
     <div class="col-xs-12">
       <div class="box">
@@ -25,7 +50,8 @@
               <th>#</th>
               <th>NIS</th>
               <th>Nama</th>
-              <th>Kode Kelas</th>
+              <th>Jenis Kelamin</th>
+              <th>Kelas</th>
               <th>Kode Piket</th>
               <th>ALamat</th>
               <th>Option</th>
@@ -37,12 +63,13 @@
             <td>{{$loop->iteration}}</td>
               <td>{{$item->NIS}}</td>
               <td>{{$item->nama_siswa}}</td>
-              <td>{{$item->kode_kelas}}</td>
+              <td>{{$item->jk}}</td>
+              <td>{{$item->nama_kelas}}</td>
               <td>{{$item->kode_piket}}</td>
               <td>{{$item->alamat}}</td>
               <td>
                   <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_siswa}}"></button>
-                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_siswa}}"> </button>                            
+                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-danger{{$item->id_siswa}}"> </button>                            
               </td>
             </tr>
      @endforeach
@@ -85,9 +112,25 @@
               </div>
               <br><br>
               <div class="form-group">
+                  <label for="jk" class="col-sm-4 control-label">Jenis Kelamin</label>
+                  <div class="col-sm-8">
+                      <select class="form-control" name="jk">
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <br><br>
+              <div class="form-group">
                   <label for="kode_kelas" class="col-sm-4 control-label">Kode Kelas</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" name='kode_kelas' id="kode_kelas" placeholder="kode_kelas">
+                    <select class="form-control" name="kode_kelas">
+                      {{-- <option value="" disabled selected>Kode Kelas</option> --}}
+                @foreach ($class as $clases)                       
+                      <option value="{{$clases->id}}">{{$clases->nama_kelas}}</option>
+                @endforeach    
+                    </select>
+                    {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
                   </div>
                 </div>
                 <br><br>
@@ -131,7 +174,7 @@
 
 <!-- /.modal-HAPUS -->
 @foreach ($siswa as $item)
-<div class="modal fade" id="modal-default{{$item->id_siswa}}">
+<div class="modal modal-danger  fade" id="modal-danger{{$item->id_siswa}}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -171,13 +214,7 @@
                 <input type="hidden" name="id" value="{{$item->id_siswa}}">
                 
                 <div class="box-body">
-                  <div class="form-group">
-                    <label for="NIS" class="col-sm-4 control-label">NIS</label>
-                    <div class="col-sm-8">
-                    <input type="text" class="form-control" name="NIS" id="NIS" placeholder="NIS" value="{{$item->NIS}}">
-                    </div>
-                  </div>
-                  <br><br>
+                
                 <div class="form-group">
                   <label for="nama_siswa" class="col-sm-4 control-label">Nama Siswa</label>
                   <div class="col-sm-8">
@@ -186,16 +223,32 @@
                 </div>
                 <br><br>
                 <div class="form-group">
-                    <label for="kode_kelas" class="col-sm-4 control-label">Kode Kelas</label>
+                    <label for="jk" class="col-sm-4 control-label">Jenis Kelamin</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" name='kode_kelas' id="kode_kelas" placeholder="kode_kelas" value="{{$item->kode_kelas}}">
+                        <select class="form-control" name="jk">
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </select>
                     </div>
                   </div>
                   <br><br>
                   <div class="form-group">
-                    <label for="jadpiket" class="col-sm-4 control-label">Kode Piket</label>
+                      <label for="kode_kelas" class="col-sm-4 control-label">Kode Kelas</label>
+                      <div class="col-sm-8">
+                        <select class="form-control" name="kode_kelas">
+                          {{-- <option value="" disabled selected>Kode Kelas</option> --}}
+                    @foreach ($class as $clases)                       
+                          <option value="{{$clases->id}}">{{$clases->nama_kelas}}</option>
+                    @endforeach    
+                        </select>
+                        {{-- <input type="text" class="form-control" name="kode_guru" id="kodeguru" placeholder="Kode Kelas"> --}}
+                      </div>
+                    </div>
+                    <br><br>
+                  <div class="form-group">
+                    <label for="kode_piket" class="col-sm-4 control-label">Kode Piket</label>
                     <div class="col-sm-8">
-                      <select class="form-control" name="jadpiket">
+                      <select class="form-control" name="kode_piket">
                         <option value="" disabled selected>Kode Piket</option>
                         @foreach($jadpiket as $itemP)
                         <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>

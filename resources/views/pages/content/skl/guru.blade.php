@@ -2,6 +2,29 @@
 @section('h1')School @endsection
 @section('h2')Teachers @endsection
 @section('content')
+@if($message = Session::get('yeah'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-success  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+  @elseif($message = Session::get('update'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-warning  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+  @elseif($message = Session::get('dele'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-danger  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+
+@endif
 <div class="row">
     <div class="col-xs-12">
       <div class="box">
@@ -25,6 +48,7 @@
               <th>#</th>
               <th>Kode Guru</th>
               <th>Nama Guru</th>
+              <th>Jenis Kelamin</th>
               <th>Mapel</th>
               <th>Option</th>
             </tr>
@@ -35,6 +59,7 @@
               <td>{{$loop->iteration}}</td>
               <td>{{$item->kode_guru}}</td>
               <td>{{$item->nama_guru}}</td>
+              <td>{{$item->jk}}</td>
               <td>{{$item->kode_mapel}}</td>
               <td>
                   <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_guru}}"></button>
@@ -81,6 +106,16 @@
               </div>
               <br><br>
               <div class="form-group">
+                  <label for="jk" class="col-sm-4 control-label">Jenis Kelamin</label>
+                  <div class="col-sm-8">
+                      <select class="form-control" name="jk">
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
+                  </div>
+                </div>
+                <br><br>
+              <div class="form-group">
                   <label for="kode_mapel" class="col-sm-4 control-label">Mapel</label>
                   <div class="col-sm-8">
                     <select class="form-control" name="kode_mapel">
@@ -112,7 +147,7 @@
 
 <!-- /.modal-HAPUS -->
 @foreach ($guru as $item)
-<div class="modal fade" id="modal-default{{$item->id_guru}}">
+<div class="modal modal-danger  fade" id="modal-default{{$item->id_guru}}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -152,13 +187,6 @@
                 <input type="hidden" name="id" value="{{$item->id_guru}}">
                 
                 <div class="box-body">
-                  <div class="form-group">
-                    <label for="kode_guru" class="col-sm-4 control-label">Kode Guru</label>
-                    <div class="col-sm-8">
-                    <input type="text" class="form-control" name="kode_guru" id="kode_guru" placeholder="kode_guru" value="{{$item->kode_guru}}">
-                    </div>
-                  </div>
-                  <br><br>
                 <div class="form-group">
                   <label for="nama_guru" class="col-sm-4 control-label">Nama Guru</label>
                   <div class="col-sm-8">
@@ -166,6 +194,17 @@
                   </div>
                 </div>
                 <br><br>
+                <div class="form-group">
+                    <label for="jk" class="col-sm-4 control-label">Jenis Kelamin</label>
+                    <div class="col-sm-8">
+                        <select class="form-control" name="jk">
+                        <option value="Laki-laki">Laki-laki</option>
+                        <option value="Perempuan">Perempuan</option>
+                      </select>
+                    </div>
+                  </div>
+                  <br><br>
+              
                 <div class="form-group">
                     <label for="kode_mapel" class="col-sm-4 control-label">Mapel</label>
                     <div class="col-sm-8">
