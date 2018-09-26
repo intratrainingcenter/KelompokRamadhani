@@ -24,7 +24,6 @@
             <th><center>Kode Piket</center></th>
             <th><center>Hari</center></th>
             <th><center>Action</center></th>
-            <th><center>Kelas</center></th>
           </tr>
           @foreach($data as $piket)
           <tr>
