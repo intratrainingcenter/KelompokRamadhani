@@ -20,19 +20,33 @@
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
           <tr>
-            <th>No</th>
-            <th>Kode Piket</th>
-            <th>Hari</th>
-            <th>Action</th>
+            <th><center>No</center></th>
+            <th><center>Kode Piket</center></th>
+            <th><center>Hari</center></th>
+            <th><center>Action</center></th>
+            <th><center>Kelas</center></th>
           </tr>
           @foreach($data as $piket)
           <tr>
-            <td>{{$loop->iteration}}</td>
-            <td>{{$piket->kode_piket}}</td>
-            <td>{{$piket->hari}}</td>
+            <td><center>{{$loop->iteration}}</center></td>
+            <td><center>{{$piket->kode_piket}}</center></td>
+            <td><center>{{$piket->hari}}</center></td>
             <td>
+              <center>
             	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$piket->id}}"><li class="fa fa-edit"></li></button>
             	<button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$piket->id}}"><li class="fa fa-bitbucket"></li></button>
+              <button type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#modal-detail{{$piket->id}}"><li class="fa fa-search-plus"></li></button>
+              </center>
+            </td>
+            <td>
+              <div class="col-sm-8">
+                <select class="form-control" name="kelas">
+                  <option value="" disabled selected>Pilih Kelas</option>
+                  @foreach($kelas as $class)
+                  <option value="{{$class->kode_kelas}}">{{$class->nama_kelas}}</option>
+                  @endforeach
+                </select>
+              </div>
             </td>
           </tr>
           @endforeach
@@ -65,12 +79,12 @@
 	                  <div class="col-sm-8">
 	                    <select class="form-control" name="hari">
 	                      <option value="" disabled selected>Hari</option>
-	                      <option value="senin">Senin</option>
-	                      <option value="selasa">Selasa</option>
-	                      <option value="rabu">Rabu</option>
-	                      <option value="kamis">Kamis</option>
-	                      <option value="jumat">Jum'at</option>
-	                      <option value="sabtu">Sabtu</option>
+	                      <option value="Senin">Senin</option>
+	                      <option value="Selasa">Selasa</option>
+	                      <option value="Rabu">Rabu</option>
+	                      <option value="Kamis">Kamis</option>
+	                      <option value="Jumat">Jum'at</option>
+	                      <option value="Sabtu">Sabtu</option>
 	                    </select>
 	                  </div>
 	                </div>
@@ -117,6 +131,7 @@
   </div>
    {{-- /.modal --}}
 
+   {{-- modal edit --}}
    <div class="modal fade" id="modal-edit{{$piket->id}}">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -141,13 +156,13 @@
                 <label for="hari" class="col-sm-4 control-label">Hari</label>
                 <div class="col-sm-8">
                 <select class="form-control" name="hari">
-                      <option value="{{$piket->hari}}" disabled selected>{{$piket->hari}}</option>
-                      <option value="senin">Senin</option>
-                        <option value="selasa">Selasa</option>
-                        <option value="rabu">Rabu</option>
-                        <option value="kamis">Kamis</option>
-                        <option value="jumat">Jum'at</option>
-                        <option value="sabtu">Sabtu</option>
+                      <option value="{{$piket->hari}}" readonly selected><b>{{$piket->hari}}</b></option>
+                      <option value="Senin">Senin</option>
+                      <option value="Selasa">Selasa</option>
+                      <option value="Rabu">Rabu</option>
+                      <option value="Kamis">Kamis</option>
+                      <option value="Jumat">Jum'at</option>
+                      <option value="Sabtu">Sabtu</option>
                     </select>
                 </div>
               </div>
@@ -157,6 +172,60 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        {!! Form::close() !!}
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
+  {{-- modal detail --}}
+   <div class="modal fade" id="modal-detail{{$piket->id}}">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Piket Hari {{$piket->hari}}</h4>
+        </div>
+        {!! Form::open(['route' => 'update',$piket->id, 'method' => 'PUT' ]) !!}
+        <div class="modal-body">
+        <input type="hidden" name="id" value="{{$piket->id}}">
+                
+        <div class="box-body">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <tr>
+                  <th style="width: 10px">No</th>
+                  <th>Nama</th>
+                  <th>Kelas</th>
+                  <th style="width: 70px">NIS</th>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>Update software</td>
+                  <td>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-red">55%</span></td>
+                </tr>
+              </table>
+            </div>
+            <!-- /.box-body -->
+            </div>
+          </div>
+          <br>
+        </div>  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
         </div>
         {!! Form::close() !!}
       </div>
