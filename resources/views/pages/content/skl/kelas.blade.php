@@ -60,13 +60,8 @@
                   <div class="col-sm-8">
                     <select class="form-control" name="kode_guru">
                       <option value="" disabled selected>Wali Kelas</option>
-<<<<<<< HEAD
-                      @foreach($guru as $walas)
-                      <option value="{{$walas->kode_guru}}">{{$walas->nama_guru}}</option>
-=======
                       @foreach($data as $class)
                       <option value="{{$class->detailguru->kode_guru}}">{{$class->detailguru->nama_guru}}</option>
->>>>>>> mapel&siswa
                       @endforeach
                     </select>
                   </div>
