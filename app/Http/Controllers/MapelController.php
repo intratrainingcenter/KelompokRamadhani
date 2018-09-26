@@ -34,7 +34,7 @@ class MapelController extends Controller
             return redirect()->route('mapel.index')->with('yeah','add new data is success');
         }
         else{
-            return redirect('mapel');
+            return redirect()->route('mapel.index')->with('update','add new data is success');            
         }
 
     }
