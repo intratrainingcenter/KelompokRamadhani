@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\jadpiket;
 use App\kelas;
+use App\siswa;
 
 class PiketController extends Controller
 {
@@ -44,5 +45,20 @@ class PiketController extends Controller
     	]);
 
     	return redirect('piket');
+    }
+
+    public function detail(Request $request)
+    {
+        $detail = kelas::find($request->id);
+        $siswa = siswa::all();
+
+        return redirect('piket');
+    }
+
+    public function showdata($id)
+    {
+        $siswa = siswa::where('kode_kelas',$id)->get();
+
+        return $siswa;
     }
 }

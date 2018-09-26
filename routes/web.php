@@ -48,6 +48,8 @@ Route::prefix('PKT')->group(function(){
 	route::post('add', 'PiketController@add')->name('add');
 	route::delete('delete', 'PiketController@delete')->name('delete');
     route::put('update', 'PiketController@edit')->name('update');
+    route::get('detail', 'PiketController@detail')->name('detail');
+    route::get('show/{id}', 'PiketController@showdata')->name('show');
 });
 
 Route::prefix('ABS')->group(function(){
