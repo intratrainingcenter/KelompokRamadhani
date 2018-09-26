@@ -54,4 +54,6 @@ Route::prefix('PKT')->group(function(){
 
 Route::prefix('ABS')->group(function(){
     route::get('detail', 'AbsenController@detail')->name('ABS.detail');
+    route::post('adddetail', 'AbsenController@add')->name('adddetail');
+
 });
