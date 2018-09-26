@@ -31,10 +31,10 @@ class MapelController extends Controller
           $table->orderBy('id_mapel DESC');
           $table->save();
 
-            return redirect()->route('mapel.index')->with('yeah','add new data is success');
+            return redirect()->route('mapel.index')->with('yeah','Add new data success');
         }
         else{
-            return redirect()->route('mapel.index')->with('update','add new data is success');            
+            return redirect()->route('mapel.index')->with('update','your Code is already exists');            
         }
 
     }
@@ -42,32 +42,39 @@ class MapelController extends Controller
     public function delete(Request $request)
     {
         // dd($request);
-        $delete = mapel::where('id_mapel',$request->id);
+        $cek = DB::table('gurus')
+            ->join('mapels', 'gurus.kode_mapel', '=', 'mapels.kode_mapel')
+            ->select('mapels.*','gurus.*')
+            ->where('gurus.kode_mapel',$request->kode)
+            ->doesntExist();
+        // dd($cek);
+        if($cek == true)
+        {
+        // dd($request);
+        $delete = mapel::where('kode_mapel',$request->kode);
         $delete->delete();
 
-        return redirect('mapel');
+        return redirect()->route('mapel.index')->with('yeah','Deleting data success');
+        }
+        else{
+
+        return redirect()->route('mapel.index')->with('update','Code is already use in another table');
+
+        }
 
     }
 
     public function edit(Request $request)
     {
         // dd($request);
-        $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();
-        
-        if($cek == true)
-        {
+       
         $update = mapel::find($request->id);
         $update->mapel = $request->mapel;
         $update->nkm = $request->nkm;
         $update->save();
 
-        return redirect('mapel');
-        }
-        else{
-
-        return redirect('mapel');
-
-        }
+            return redirect()->route('mapel.index')->with('yeah','Update data success');
+       
 
 
 
