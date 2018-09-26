@@ -2,6 +2,31 @@
 @section('h1')Sekolah @endsection
 @section('h2')Kelas @endsection
 @section('content')
+
+@if($message = Session::get('yeah'))
+{{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+  <div class="alert alert-success  alert-dismissible fade in notif" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>{{$message}}!</strong>
+  </div>
+{{-- </div> --}}
+@elseif($message = Session::get('update'))
+{{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+  <div class="alert alert-warning  alert-dismissible fade in notif" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>{{$message}}!</strong>
+  </div>
+{{-- </div> --}}
+@elseif($message = Session::get('dele'))
+{{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+  <div class="alert alert-danger  alert-dismissible fade in notif" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>{{$message}}!</strong>
+  </div>
+{{-- </div> --}}
+
+@endif
+
 <div class="row">
   <div class="col-xs-12">
     <div class="box">

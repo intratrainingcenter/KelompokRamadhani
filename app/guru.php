@@ -8,6 +8,6 @@ class guru extends Model
 {
     protected $table = 'gurus';
     protected $primaryKey = 'id_guru';
-    protected $fillable = ['id_guru','kode_guru','nama_guru','kode_mapel'];
+    protected $fillable = ['id_guru','kode_guru','nama_guru','jk','kode_mapel'];
 
 }

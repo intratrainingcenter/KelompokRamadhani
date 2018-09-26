@@ -31,14 +31,15 @@ class GuruController extends Controller
           $table = new guru;
           $table->kode_guru = $request->kode_guru;
           $table->nama_guru = $request->nama_guru;
+          $table->jk = $request->jk;
           $table->kode_mapel = $request->kode_mapel;
           $table->orderBy('id_guru', 'DESC');
           $table->save();
           
-            return redirect('guru');
+          return redirect()->route('guru.index')->with('yeah','Add new data success'); 
         }
         else{
-            return redirect('guru');
+            return redirect()->route('guru.index')->with('update','your Code is already exists');          
 
         }
 
@@ -50,7 +51,7 @@ class GuruController extends Controller
         $delete = guru::where('id_guru',$request->id);
         $delete->delete();
 
-        return redirect('guru');
+        return redirect()->route('guru.index')->with('yeah','Deleting data success');
 
     }
 
@@ -58,12 +59,12 @@ class GuruController extends Controller
     {
         // dd($request);
         $update = guru::find($request->id);
-        $update->kode_guru = $request->kode_guru;
         $update->nama_guru = $request->nama_guru;
+        $update->jk = $request->jk;
         $update->kode_mapel = $request->kode_mapel;
         $update->save();
 
-      return redirect('guru');
+        return redirect()->route('guru.index')->with('yeah','Update data success');
 
 
     }
