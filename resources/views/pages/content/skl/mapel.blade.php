@@ -131,7 +131,7 @@
 
 <!-- /.modal-HAPUS -->
 @foreach ($mapel as $item)
-<div class="modal fade" id="modal-default{{$item->kode_mapel}}">
+<div class="modal modal-danger  fade" id="modal-default{{$item->kode_mapel}}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
