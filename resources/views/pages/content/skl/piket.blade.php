@@ -23,6 +23,7 @@
             <th><center>No</center></th>
             <th><center>Kode Piket</center></th>
             <th><center>Hari</center></th>
+            <th><center>Kelas</center></th>
             <th><center>Action</center></th>
           </tr>
           @foreach($data as $piket)
@@ -31,21 +32,20 @@
             <td><center>{{$piket->kode_piket}}</center></td>
             <td><center>{{$piket->hari}}</center></td>
             <td>
-              <center>
-            	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$piket->id}}"><li class="fa fa-edit"></li></button>
-            	<button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$piket->id}}"><li class="fa fa-bitbucket"></li></button>
-              <button type="button" class="btn-lg btn-info" data-toggle="modal" data-target="#modal-detail{{$piket->id}}"><li class="fa fa-search-plus"></li></button>
-              </center>
-            </td>
-            <td>
               <div class="col-sm-8">
-                <select class="form-control" name="kelas">
-                  <option value="" disabled selected>Pilih Kelas</option>
+                <select class="form-control pilkel" name="kelas">
                   @foreach($kelas as $class)
-                  <option value="{{$class->kode_kelas}}">{{$class->nama_kelas}}</option>
+                  <option value="{{$class->id}}">{{$class->nama_kelas}}</option>
                   @endforeach
                 </select>
               </div>
+            </td>
+            <td>
+              <center>
+            	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$piket->id}}"><li class="fa fa-edit"></li></button>
+            	<button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$piket->id}}"><li class="fa fa-bitbucket"></li></button>
+              <button type="button" class="btn-lg btn-info detail" data-toggle="modal" data-target="#modal-detail{{$piket->id}}"><li class="fa fa-search-plus"></li></button>
+              </center>
             </td>
           </tr>
           @endforeach
@@ -199,22 +199,18 @@
               <!-- /.box-header -->
             <div class="box-body no-padding">
               <table class="table table-striped">
-                <tr>
-                  <th style="width: 10px">No</th>
+                <thead>
+                  <th>No</th>
                   <th>Nama</th>
-                  <th>Kelas</th>
-                  <th style="width: 70px">NIS</th>
-                </tr>
+                  <th>NIS</th>
+                </thead>
+                <tbody id="datpik">
                 <tr>
                   <td>1.</td>
                   <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-red">55%</span></td>
+                  <td><span class="badge bg-red">nis</span></td>
                 </tr>
+                </tbody>
               </table>
             </div>
             <!-- /.box-body -->
