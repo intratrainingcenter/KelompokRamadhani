@@ -13,12 +13,12 @@ class GuruController extends Controller
     public function index()
     {
         $data = mapel::all();
-        $guru = DB::table('gurus')
+        $teacher = DB::table('gurus')
         ->join('mapels','gurus.kode_mapel','=','mapels.kode_mapel')
         ->select('mapels.*','gurus.*')
         ->orderBy('id_guru','DESC')->get();
         // dd($mapel);
-        return view ('pages/content/skl/guru',['guru'=>$guru,'data'=>$data]);
+        return view ('pages/content/skl/guru',['guru'=>$teacher,'data'=>$data]);
     }
 
     public function addguru(Request $request)
@@ -47,8 +47,8 @@ class GuruController extends Controller
     public function deleteguru(Request $request)
     {
         // dd($request);
-        $hapus = guru::where('id_guru',$request->id);
-        $hapus->delete();
+        $delete = guru::where('id_guru',$request->id);
+        $delete->delete();
 
         return redirect('guru');
 

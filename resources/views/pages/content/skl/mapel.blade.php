@@ -1,6 +1,6 @@
 @extends('pages/navmenu.home')
-@section('h1')Sekolah @endsection
-@section('h2')Mata Pelajaran @endsection
+@section('h1')School @endsection
+@section('h2')Objects @endsection
 @section('content')
 <div class="row">
     <div class="col-xs-12">
