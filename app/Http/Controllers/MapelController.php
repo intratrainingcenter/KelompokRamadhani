@@ -22,6 +22,7 @@ class MapelController extends Controller
         $cek =mapel::where('kode_mapel','=',$request->kode_mapel)->doesntExist();
         // dd($cek);
         if($cek == true)
+
         {
           $table = new mapel;
           $table->kode_mapel = $request->kode_mapel;
@@ -30,7 +31,7 @@ class MapelController extends Controller
           $table->orderBy('id_mapel DESC');
           $table->save();
 
-            return redirect('mapel');
+            return redirect()->route('mapel.index')->with('yeah','add new data is success');
         }
         else{
             return redirect('mapel');
