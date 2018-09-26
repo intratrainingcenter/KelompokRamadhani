@@ -9,7 +9,7 @@
           <h3 class="box-title"></h3>
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-              <button type="button" class="btn-lg btn-primary fa fa-plus-square add" id="show" title="Add Siswa"> </button>                    
+              {{-- <button type="button" class="btn-lg btn-primary fa fa-plus-square add" id="show" title="Add Siswa"> </button>                     --}}
               <button type="button" class="btn-lg btn-success fa fa-plus-square add" title="Add Siswa" data-toggle="modal" data-target="#modal-success"> </button>                                 
               <div class="input-group-btn">
                
