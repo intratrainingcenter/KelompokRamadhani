@@ -62,7 +62,7 @@
               <td>{{$item->nkm}}</td>
               <td>
                   <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_mapel}}"></button>
-                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->id_mapel}}"> </button>               
+                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->kode_mapel}}"> </button>               
               </td>
             </tr>
             @endforeach
@@ -131,7 +131,7 @@
 
 <!-- /.modal-HAPUS -->
 @foreach ($mapel as $item)
-<div class="modal fade" id="modal-default{{$item->id_mapel}}">
+<div class="modal fade" id="modal-default{{$item->kode_mapel}}">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -139,9 +139,9 @@
                   <span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">delete Mapel</h4>
               </div>
-              {!! Form::open(['route' => 'sekolah.delete',$item->id_mapel, 'method' => 'delete' ]) !!}
+              {!! Form::open(['route' => 'sekolah.delete',$item->kode_mapel, 'method' => 'delete' ]) !!}
               <div class="modal-body">
-              <input type="hidden" name="id" value="{{$item->id_mapel}}">
+              <input type="hidden" name="kode" value="{{$item->kode_mapel}}">
               <p>Apakah anda yakin ingin menghapus mapel :{{$item->mapel}}</p>
               </div>
               <div class="modal-footer">

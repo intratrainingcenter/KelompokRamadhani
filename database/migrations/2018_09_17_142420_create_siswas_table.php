@@ -18,9 +18,11 @@ class CreateSiswasTable extends Migration
             $table->timestamps();
             $table->string('NIS');
             $table->string('nama_siswa');
+            $table->string('JK');
             $table->string('kode_kelas');
             $table->string('kode_piket');
             $table->string('alamat');
+
 
         });
     }
