@@ -50,3 +50,6 @@ Route::prefix('PKT')->group(function(){
     route::put('update', 'PiketController@edit')->name('update');
 });
 
+Route::prefix('ABS')->group(function(){
+    route::get('detail', 'AbsenController@detail')->name('ABS.detail');
+});
