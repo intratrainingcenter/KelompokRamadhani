@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\jadpiket;
+use App\kelas;
 
 class PiketController extends Controller
 {
     public function index()
     {
-    	$data = jadpiket::all();
+        $data = jadpiket::all();
+    	$kelas = kelas::all();
     	// dd($data);
-        return view ('pages/content/skl/piket', compact('data'));
+        return view ('pages/content/skl/piket', compact('data','kelas'));
     }
 
     public function add(Request $request)

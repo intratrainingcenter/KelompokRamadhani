@@ -17,7 +17,7 @@ class CreateJadpiketsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('kode_piket');
-            $table->enum('hari',['senin','selasa','rabu','kamis','jumat','sabtu']);
+            $table->enum('hari',['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu']);
 
 
            

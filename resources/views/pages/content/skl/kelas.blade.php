@@ -60,8 +60,8 @@
                   <div class="col-sm-8">
                     <select class="form-control" name="kode_guru">
                       <option value="" disabled selected>Wali Kelas</option>
-                      @foreach($data as $class)
-                      <option value="{{$class->detailguru->kode_guru}}">{{$class->detailguru->nama_guru}}</option>
+                      @foreach($guru as $class)
+                      <option value="{{$class->kode_guru}}">{{$class->nama_guru}}</option>
                       @endforeach
                     </select>
                   </div>
@@ -124,6 +124,7 @@
   </div>
    {{-- /.modal --}}
 
+   {{-- model edit --}}
    <div class="modal fade" id="modal-edit{{$kelas->id}}">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -141,7 +142,7 @@
                 <label for="kodeguru" class="col-sm-4 control-label">Wali Kelas</label>
                 <div class="col-sm-8">
                 <select class="form-control" name="kode_guru">
-                      <option value="{{$kelas->kode_guru}}" disabled selected>{{$kelas->detailguru->nama_guru}}</option>
+                      <option value="{{$kelas->detailguru->kode_guru}}" readonly selected>{{$kelas->detailguru->nama_guru}}</option>
                       @foreach($guru as $walas)
                       <option value="{{$walas->kode_guru}}">{{$walas->nama_guru}}</option>
                       @endforeach
