@@ -2,12 +2,23 @@
 @section('h1')School @endsection
 @section('h2')Objects @endsection
 @section('content')
+
+@if($message = Session::get('yeah'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-success  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+
+@endif
+
+
 <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
           <h3 class="box-title"></h3>
-
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
                     <button type="button" class="btn-lg btn-success fa fa-plus-square" title="Tambah Mapel" data-toggle="modal" data-target="#modal-success"> </button>               
