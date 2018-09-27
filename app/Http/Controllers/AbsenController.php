@@ -20,20 +20,20 @@ class AbsenController extends Controller
     public function detail(Request $request)
     {
         // dd($request);
-        $stud = siswa::where('kode_kelas',$request->id)->get();
+        $student = siswa::where('kode_kelas',$request->id)->get();
         // dd($stud);
-        return view ('pages/content/skl/detailabsen',['detail'=>$stud]);
+        return view ('pages/content/skl/detailabsen',['detail'=>$student]);
     }
     public function add(Request $request)
     {
         // dd($request);
         $date = date("Y-m-d");
         $cek = absensi::where('tgl',$date)->doesntExist();
-        $cek2 = absensi::where('NIS',$request->NIS)->doesntExist();
-        // dd($cek,$cek2);
+        $cekNIS = absensi::where('NIS',$request->NIS)->doesntExist();
+    
         if($cek == true)
         {
-            if($cek2 == true)
+            if($cekNIS == true)
             {
                 $table = new absensi;
                 $table->NIS = $request->NIS;
@@ -53,7 +53,7 @@ class AbsenController extends Controller
         }
         else
         {
-            if($cek2 == true)
+            if($cekNIS == true)
             {
                 $table = new absensi;
                 $table->NIS = $request->NIS;
@@ -76,7 +76,7 @@ class AbsenController extends Controller
     public function list(Request $request)
     {
         // dd($request);
-          $stud = DB::table('absensis')
+          $student = DB::table('absensis')
           ->join('siswas','absensis.NIS','=','siswas.NIS')
           ->join('kelas','absensis.kode_kelas','=','kelas.id')
           ->select('absensis.*','siswas.nama_siswa','kelas.nama_kelas')
@@ -84,7 +84,7 @@ class AbsenController extends Controller
           ->orderBy('absensis.kode_kelas','DESC')
           ->get();
         // dd($stud);
-        return view ('pages/content/skl/listabsen',['detail'=>$stud]);
+        return view ('pages/content/skl/listabsen',['detail'=>$student]);
     }
 
     public function editlist(Request $request)
@@ -96,7 +96,7 @@ class AbsenController extends Controller
             ->where('NIS', $request->id)
             ->update(['keterangan' => $request->keterangan]);
 
-            $stud = DB::table('absensis')
+            $student = DB::table('absensis')
           ->join('siswas','absensis.NIS','=','siswas.NIS')
           ->join('kelas','absensis.kode_kelas','=','kelas.id')
           ->select('absensis.*','siswas.nama_siswa','kelas.nama_kelas')
@@ -105,7 +105,7 @@ class AbsenController extends Controller
           ->get();
         
     //   return redirect('ABS.list');
-      return view('pages/content/skl/listabsen',['detail'=>$stud]);
+      return view('pages/content/skl/listabsen',['detail'=>$student]);
 
     }
 }
