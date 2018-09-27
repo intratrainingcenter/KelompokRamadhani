@@ -23,7 +23,7 @@ class KelasController extends Controller
     	$hapus->delete();
         // dd($delete);
 
-    	return redirect('kelas')->with('dele','Deleting data success');
+    	return redirect('kelas')->with('yeah','Deleting data success');
     }
 
     public function add(Request $request)
