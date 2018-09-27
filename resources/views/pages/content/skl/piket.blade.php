@@ -2,11 +2,36 @@
 @section('h1','Sekolah')
 @section('h2')Jadwal Piket @endsection
 @section('content')
+
+@if($message = Session::get('yeah'))
+{{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+  <div class="alert alert-success  alert-dismissible fade in notif" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>{{$message}}!</strong>
+  </div>
+{{-- </div> --}}
+@elseif($message = Session::get('update'))
+{{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+  <div class="alert alert-warning  alert-dismissible fade in notif" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>{{$message}}!</strong>
+  </div>
+{{-- </div> --}}
+@elseif($message = Session::get('dele'))
+{{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+  <div class="alert alert-danger  alert-dismissible fade in notif" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+    <strong>{{$message}}!</strong>
+  </div>
+{{-- </div> --}}
+
+@endif
+
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Responsive Hover Table</h3>
+        <h3 class="box-title"></h3>
 
         <div class="box-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -33,7 +58,8 @@
             <td><center>{{$piket->hari}}</center></td>
             <td>
               <div class="col-sm-8">
-                <select class="form-control pilkel" name="kelas">
+                <input type="hidden" id="kode{{$piket->id}}" value="{{$piket->kode_piket}}">
+                <select id="kls{{$piket->id}}" class="form-control pilkel" name="kelas">
                   @foreach($kelas as $class)
                   <option value="{{$class->id}}">{{$class->nama_kelas}}</option>
                   @endforeach
@@ -43,8 +69,7 @@
             <td>
               <center>
             	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$piket->id}}"><li class="fa fa-edit"></li></button>
-            	<button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$piket->id}}"><li class="fa fa-bitbucket"></li></button>
-              <button type="button" class="btn-lg btn-info detail" data-toggle="modal" data-target="#modal-detail{{$piket->id}}"><li class="fa fa-search-plus"></li></button>
+              <button type="button" class="btn-lg btn-info detail" data-toggle="modal" data-target="#modal-detail" key='{{$piket->id}}'><li class="fa fa-search-plus"></li></button>
               </center>
             </td>
           </tr>
@@ -147,7 +172,7 @@
         	<div class="form-group">
               <label for="kode_piket" class="col-sm-4 control-label">Kode Piket</label>
               <div class="col-sm-8">
-                <input type="text" class="form-control" name="kode_piket" id="kode_piket" placeholder="Kode Piket" value="{{$piket->kode_piket}}">
+                <input type="text" class="form-control" name="kode_piket" id="kode_piket" placeholder="Kode Piket" readonly="readonly" value="{{$piket->kode_piket}}">
               </div>
             </div>
             <br><br>
@@ -181,7 +206,7 @@
   <!-- /.modal -->
 
   {{-- modal detail --}}
-   <div class="modal fade" id="modal-detail{{$piket->id}}">
+   <div class="modal fade" id="modal-detail">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -189,7 +214,6 @@
             <span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title">Piket Hari {{$piket->hari}}</h4>
         </div>
-        {!! Form::open(['route' => 'update',$piket->id, 'method' => 'PUT' ]) !!}
         <div class="modal-body">
         <input type="hidden" name="id" value="{{$piket->id}}">
                 
@@ -222,7 +246,6 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
         </div>
-        {!! Form::close() !!}
       </div>
       <!-- /.modal-content -->
     </div>

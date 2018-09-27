@@ -1,12 +1,15 @@
 $(document).ready(function(){
 	$('.detail').click(function() {
-		var kelas = $('.pilkel').val();
+		var idkel = $(this).attr('key');
+		var kelas = $('#kls'+idkel).val();
+		var kode = $('#kode'+idkel).val();
+		console.log(kelas);
 		var isi = '';
 		var no = 1;
 		$.ajax({
 			url: '/PKT/show/'+kelas,
 			type: 'GET',
-			data: '',
+			data: {'kode': kode}
 		})
 		.done(function(data){
 			$.each(data, function(index, el) {
