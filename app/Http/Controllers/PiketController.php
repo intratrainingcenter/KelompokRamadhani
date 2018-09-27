@@ -44,7 +44,7 @@ class PiketController extends Controller
     		'hari'			=>	$request->hari
     	]);
 
-    	return redirect('piket')->with('update','Update data success');
+    	return redirect('piket')->with('yeah','Update data success');
     }
 
     public function detail(Request $request)
