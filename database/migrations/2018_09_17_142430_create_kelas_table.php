@@ -14,9 +14,9 @@ class CreateKelasTable extends Migration
     public function up()
     {
         Schema::create('kelas', function (Blueprint $table) {
-            $table->increments('id_kelas');
+            $table->increments('id');
             $table->timestamps();
-            $table->integer('id_user');
+            $table->string('kode_guru',20)->nullable();
             $table->string('nama_kelas',40);
             $table->string('jml_siswa',40);
 

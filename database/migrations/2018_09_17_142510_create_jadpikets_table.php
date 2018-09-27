@@ -14,11 +14,10 @@ class CreateJadpiketsTable extends Migration
     public function up()
     {
         Schema::create('jadpikets', function (Blueprint $table) {
-            $table->increments('id_jadpiket');
+            $table->increments('id');
             $table->timestamps();
-            $table->integer('id_siswa');
-            $table->string('nama_siswa',40);
-            $table->string('hari');
+            $table->string('kode_piket');
+            $table->enum('hari',['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu']);
 
 
            

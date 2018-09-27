@@ -14,13 +14,12 @@ class CreateAbsensisTable extends Migration
     public function up()
     {
         Schema::create('absensis', function (Blueprint $table) {
-            $table->increments('id_absensi');
+            $table->increments('id');
             $table->timestamps();
-            $table->integer('id_siswa');
-            $table->string('absen',15);
-            $table->string('ijin',15);            
-            $table->string('sakit',15);
-
+            $table->integer('kode_kelas')->nullable();
+            $table->string('NIS')->nullable();
+            $table->string('tgl');
+            $table->string('keterangan')->nullable();
         });
     }
 

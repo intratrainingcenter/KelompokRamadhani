@@ -1,16 +1,41 @@
 @extends('pages/navmenu.home')
-@section('h1')Sekolah @endsection
-@section('h2')Mata Pelajaran @endsection
+@section('h1')School @endsection
+@section('h2')Objects @endsection
 @section('content')
+
+@if($message = Session::get('yeah'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-success  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+  @elseif($message = Session::get('update'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-warning  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+  @elseif($message = Session::get('dele'))
+  {{-- <div style="position: absolute; z-index: 999; right: -10px; top:-50px " class="col-md-6 "> --}}
+    <div class="alert alert-danger  alert-dismissible fade in notif" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+      <strong>{{$message}}!</strong>
+    </div>
+  {{-- </div> --}}
+
+@endif
+
+
 <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
           <h3 class="box-title"></h3>
-
           <div class="box-tools">
             <div class="input-group input-group-sm" style="width: 150px;">
-                    <button type="button" class="btn-lg btn-success fa fa-plus-square" data-toggle="modal" data-target="#modal-success"> </button>               
+                    <button type="button" class="btn-lg btn-success fa fa-plus-square" title="Tambah Mapel" data-toggle="modal" data-target="#modal-success"> </button>               
               <div class="input-group-btn">
               </div>
             </div>
@@ -22,7 +47,6 @@
         <thead> 
             <tr>
               <th>#</th>
-              <th>Kode guru</th>
               <th>Kode Mapel</th>
               <th>Mata Pelajaran</th>
               <th>NKM</th>
@@ -33,13 +57,12 @@
           @foreach ($mapel as $item)
             <tr>
               <td>{{$loop->iteration}}</td>
-              <td>{{$item->kode_guru}}</td>
               <td>{{$item->kode_mapel}}</td>
               <td>{{$item->mapel}}</td>
               <td>{{$item->nkm}}</td>
               <td>
-                  <button class="btn-lg btn-warning fa fa-edit"></button>
-                  <button class="btn-lg btn-danger fa fa-bitbucket"></button>                  
+                  <button type="button" class="btn-lg btn-warning fa fa-edit" title="Edit Mapel" data-toggle="modal" data-target="#modal-edit{{$item->id_mapel}}"></button>
+                  <button type="button" class="btn-lg btn-danger fa fa-bitbucket" title="Hapus Mapel" data-toggle="modal" data-target="#modal-default{{$item->kode_mapel}}"> </button>               
               </td>
             </tr>
             @endforeach
@@ -61,36 +84,30 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-          <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Tambah Mapel</h4>
+        <h4 class="modal-title">Add new Mapel</h4>
       </div>
+      {{-- <form  action="addmapel" method="post"> --}}
+          {!! Form::open(['route' => 'sekolah.add' , 'method' => 'post'])!!}
       <div class="modal-body">
           <div class="box-body">
               <div class="form-group">
-                  <label for="kodeguru" class="col-sm-4 control-label">Kode Guru</label>
-                  <div class="col-sm-8">
-                    <input type="text" class="form-control" id="kodeguru" placeholder="kode Guru">
-                  </div>
-                </div>
-                <br><br>
-              <div class="form-group">
                 <label for="kodemapel" class="col-sm-4 control-label">Kode Mapel</label>
                 <div class="col-sm-8">
-                  <input type="text" class="form-control" id="kodemapel" placeholder="kode Mapel">
+                  <input type="text" class="form-control" name="kode_mapel" id="kodemapel" placeholder="kode Mapel">
                 </div>
               </div>
               <br><br>
               <div class="form-group">
                   <label for="mapel" class="col-sm-4 control-label">Mata Pelajaran</label>
                   <div class="col-sm-8">
-                    <input type="text" class="form-control" id="mapel" placeholder="Mapel">
+                    <input type="text" class="form-control" name='mapel' id="mapel" placeholder="Mapel">
                   </div>
                 </div>
                 <br><br>
                 <div class="form-group">
                     <label for="nkm" class="col-sm-4 control-label">NKM</label>
                     <div class="col-sm-8">
-                      <input type="text" class="form-control" id="nkm" placeholder="NKM minim utk lulus">
+                      <input type="text" class="form-control" name="nkm" id="nkm"  placeholder="NKM minim utk lulus">
                     </div>
                   </div>
                   <br> 
@@ -98,9 +115,13 @@
            </div>  
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-outline">Add</button>
+        <button type="button" class="btn btn-danger pull-left batal" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </div>
+      {{-- {{ csrf_field() }}
+    </form> --}}
+    {!! Form::close() !!}
+
     </div>
     <!-- /.modal-content -->
   </div>
@@ -108,6 +129,79 @@
 </div>
 <!-- /.modal -->
 
+<!-- /.modal-HAPUS -->
+@foreach ($mapel as $item)
+<div class="modal modal-danger  fade" id="modal-default{{$item->kode_mapel}}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">delete Mapel</h4>
+              </div>
+              {!! Form::open(['route' => 'sekolah.delete',$item->kode_mapel, 'method' => 'delete' ]) !!}
+              <div class="modal-body">
+              <input type="hidden" name="kode" value="{{$item->kode_mapel}}">
+              <p>Apakah anda yakin ingin menghapus mapel :{{$item->mapel}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+              {!! Form::close() !!}
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+<!-- /.modal-EDIT -->
+
+        <div class="modal fade" id="modal-edit{{$item->id_mapel}}">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Edit Mapel - {{$item->kode_mapel}}</h4>
+                </div>
+                {!! Form::open(['route' => 'sekolah.edit',$item->id_mapel, 'method' => 'PUT' ]) !!}
+                <div class="modal-body">
+                <input type="hidden" name="id" value="{{$item->id_mapel}}">
+                
+                <div class="box-body">
+                    <div class="form-group">
+                        <label for="mapel" class="col-sm-4 control-label">Mata Pelajaran</label>
+                        <div class="col-sm-8">
+                          <input type="text" class="form-control" name='mapel' id="mapel" placeholder="Mapel" value="{{$item->mapel}}">
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                          <label for="nkm" class="col-sm-4 control-label">NKM</label>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" name="nkm" id="nkm"  placeholder="NKM minim utk lulus" value="{{$item->nkm}}">
+                          </div>
+                        </div>
+                        <br> 
+      
+                 </div>  
 
 
-@endsection
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                {!! Form::close() !!}
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal -->
+
+    @endforeach
+
+  @endsection

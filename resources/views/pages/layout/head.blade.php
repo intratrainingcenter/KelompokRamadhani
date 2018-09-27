@@ -209,6 +209,7 @@
 <!-- Morris.js charts -->
 <script src="{{asset('AdminLTE/bower_components/raphael/raphael.min.js')}}"></script>
 <script src="{{asset('AdminLTE/bower_components/morris.js/morris.min.js')}}"></script>
+<script src="{{asset('AdminLTE/bower_components/jqueryku/jquery.js')}}"></script>
 <!-- Sparkline -->
 <script src="{{asset('AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js')}}"></script>
 <!-- jvectormap -->
@@ -233,5 +234,11 @@
 <script src="{{asset('AdminLTE/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('AdminLTE/dist/js/demo.js')}}"></script>
+<script>
+</script>
+<script type="text/javascript">
+
+  setTimeout(function(){ $('.notif').hide(1000)},3000);
+</Script>
 </body>
 </html>
