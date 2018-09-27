@@ -25,7 +25,7 @@ class PiketController extends Controller
     	$table->orderBy('id DESC');
     	$table->save();
 
-    	return redirect('piket');
+    	return redirect('piket')->with('yeah','Add new data success');
     }
 
     public function delete(Request $request)
@@ -44,7 +44,7 @@ class PiketController extends Controller
     		'hari'			=>	$request->hari
     	]);
 
-    	return redirect('piket');
+    	return redirect('piket')->with('update','Update data success');
     }
 
     public function detail(Request $request)
@@ -55,9 +55,14 @@ class PiketController extends Controller
         return redirect('piket');
     }
 
-    public function showdata($id)
+    public function showdata(Request $request, $id)
     {
-        $siswa = siswa::where('kode_kelas',$id)->get();
+        // dd($request);
+        $siswa = siswa::where([
+                            ['kode_kelas',$id],
+                            ['kode_piket',$request->kode]
+                            ])->get();
+                        // dd($siswa);
 
         return $siswa;
     }
