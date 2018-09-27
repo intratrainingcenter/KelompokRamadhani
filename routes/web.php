@@ -19,6 +19,8 @@ Route::resource('absen', 'AbsenController');
 Route::resource('mapel', 'MapelController');
 Route::resource('piket', 'PiketController');
 Route::resource('guru', 'GuruController');
+Route::resource('detabsen', 'AbsenController');
+
 
 // Route::prefix('siswa')->group(function (){
     
@@ -55,5 +57,7 @@ Route::prefix('PKT')->group(function(){
 Route::prefix('ABS')->group(function(){
     route::get('detail', 'AbsenController@detail')->name('ABS.detail');
     route::post('adddetail', 'AbsenController@add')->name('adddetail');
+    route::get('list', 'AbsenController@list')->name('ABS.list');
+    route::put('editlist','AbsenController@editlist')->name('editlist');
 
 });
