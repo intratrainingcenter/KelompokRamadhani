@@ -19,13 +19,19 @@ class PiketController extends Controller
 
     public function add(Request $request)
     {
-    	$table = new jadpiket;
-    	$table->kode_piket = $request->kode_piket;
-    	$table->hari = $request->hari;
-    	$table->orderBy('id DESC');
-    	$table->save();
+        $cek = jadpiket::where('kode_piket', $request->kode_piket)->doesntExist();
+        if($cek == true)
+        {
+    	   $table = new jadpiket;
+    	   $table->kode_piket = $request->kode_piket;
+    	   $table->hari = $request->hari;
+    	   $table->orderBy('id DESC');
+    	   $table->save();
 
-    	return redirect('piket')->with('yeah','Add new data success');
+    	   return redirect('piket')->with('yeah','Add new data success');
+        }else{
+            return redirect('piket')->with('update','Name Class is already exists');
+        }
     }
 
     public function delete(Request $request)
