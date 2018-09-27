@@ -8,7 +8,7 @@ class absensi extends Model
 {
     protected $table = 'absensis';
     protected $primarykey = 'id';
-    protected $fillable = ['id','kode_kelas','NIS','keterangan'];
+    protected $fillable = ['id','kode_kelas','NIS','tgl','keterangan'];
 
     public function detailkelas()
     {
