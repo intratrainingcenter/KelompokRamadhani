@@ -69,6 +69,7 @@
             <td>
               <center>
             	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$piket->id}}"><li class="fa fa-edit"></li></button>
+              <button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$piket->id}}"><li class="fa fa-bitbucket"></li></button>
               <button type="button" class="btn-lg btn-info detail" data-toggle="modal" data-target="#modal-detail" key='{{$piket->id}}'><li class="fa fa-search-plus"></li></button>
               </center>
             </td>
