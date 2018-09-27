@@ -249,7 +249,7 @@
                     <label for="kode_piket" class="col-sm-4 control-label">Kode Piket</label>
                     <div class="col-sm-8">
                       <select class="form-control" name="kode_piket">
-                        <option value="" disabled selected>Kode Piket</option>
+                        <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>
                         @foreach($jadpiket as $itemP)
                         <option value="{{$itemP->kode_piket}}">{{$itemP->kode_piket}} - {{$itemP->hari}}</option>
                         @endforeach
