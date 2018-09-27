@@ -31,7 +31,7 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Responsive Hover Table</h3>
+        <h3 class="box-title"></h3>
 
         <div class="box-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -69,7 +69,6 @@
             <td>
               <center>
             	<button type="button" class="btn-lg btn-warning" data-toggle="modal" data-target="#modal-edit{{$piket->id}}"><li class="fa fa-edit"></li></button>
-            	{{-- <button type="button" class="btn-lg btn-danger" data-toggle="modal" data-target="#modal-danger{{$piket->id}}"><li class="fa fa-bitbucket"></li></button> --}}
               <button type="button" class="btn-lg btn-info detail" data-toggle="modal" data-target="#modal-detail" key='{{$piket->id}}'><li class="fa fa-search-plus"></li></button>
               </center>
             </td>
